@@ -1,0 +1,25 @@
+likeminds:
+  protocol_version: "0.1.0-draft"
+  repository: "OWNER/REPOSITORY"
+  default_visibility: "private"
+  routing_file: "ROUTING.md"
+  project_index: "projects/INDEX.md"
+  update_channel: "https://github.com/crseabrk/LikeMinds-Template"
+  installed_extensions: []
+
+policy:
+  operational_data_public: false
+  context_grants_authority: false
+  require_latest_sha_writes: true
+  require_acknowledged_moves: true
+  stale_poll_recovery_after: 3
+
+agent:
+  stable_role: "UNSET"
+  capabilities:
+    repository_read: true
+    repository_write: false
+    compare_and_swap_updates: false
+    scheduled_tasks: false
+    persistent_task_context: false
+    external_notifications: false
