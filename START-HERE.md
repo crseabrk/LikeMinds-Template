@@ -19,7 +19,8 @@ After creating a preferably private repository from this template, give a GitHub
 7. Declare capabilities honestly. Missing capabilities require a documented fallback or a blocked result.
 8. Validate the installation.
 9. Ask before creating recurring automation, changing visibility, touching product repositories, or performing external actions.
-10. Report installed version, repository, role, routes, and remaining human decisions.
+10. Confirm that `HUMAN-CONTROL.md`, `HUMAN-STATUS.md`, and the **LikeMinds control panel** workflow are present. Explain that the human uses **Actions → LikeMinds control panel → Run workflow** to request agent state, polling, and permission changes.
+11. Report installed version, repository, role, routes, control-panel availability, and remaining human decisions.
 
 ## Joining from another agent or machine
 
