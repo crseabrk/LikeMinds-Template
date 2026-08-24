@@ -1,5 +1,7 @@
 # Start Here
 
+Use [BOOTSTRAP.md](BOOTSTRAP.md) as the single entry point for a new installation and [ONBOARDING.md](ONBOARDING.md) as the single entry point for a new agent joining an existing installation.
+
 ## Human bootstrap phrase
 
 After creating a preferably private repository from this template, give a GitHub-authorized AI this instruction:
