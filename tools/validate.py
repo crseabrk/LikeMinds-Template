@@ -27,6 +27,8 @@ JOINING_PHRASES = [
     "proposed → acknowledging → active",
     "only active roles may claim project work",
     "separate targeted routing signal",
+    "every current active project's full record",
+    "a system announcement alone is insufficient",
 ]
 ALLOWED_SIGNAL_STATES = {"READY", "CLAIMED", "DONE", "BLOCKED", "CANCELLED"}
 ALLOWED_MEMBER_STATES = {"PROPOSED", "ACKNOWLEDGING", "ACTIVE", "PAUSED", "RETIRED", "BLOCKED"}
