@@ -7,14 +7,15 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 REQUIRED = [
-    "README.md", "START-HERE.md", "AGENTS.md", "PROTOCOL.md", "SECURITY.md",
-    "VERSION", "installation.example.yml", "templates/ROUTING.md",
+    "README.md", "START-HERE.md", "AGENTS.md", "PROTOCOL.md", "JOINING.md",
+    "SECURITY.md", "VERSION", "installation.example.yml", "templates/ROUTING.md",
     "templates/system/STATUS.md", "templates/system/DECISIONS.md",
-    "templates/system/CHAT.md", "templates/system/SIGNALS.md",
-    "templates/project/STATUS.md", "templates/project/DECISIONS.md",
-    "templates/project/CHAT.md", "templates/project/SIGNALS.md",
-    "extensions/TEMPLATE/manifest.yml", "extensions/TEMPLATE/EXTENSION.md",
-    "extensions/TEMPLATE/INSTALL.md", "extensions/TEMPLATE/UNINSTALL.md",
+    "templates/system/AGENTS.md", "templates/system/CHAT.md",
+    "templates/system/SIGNALS.md", "templates/project/STATUS.md",
+    "templates/project/DECISIONS.md", "templates/project/CHAT.md",
+    "templates/project/SIGNALS.md", "extensions/TEMPLATE/manifest.yml",
+    "extensions/TEMPLATE/EXTENSION.md", "extensions/TEMPLATE/INSTALL.md",
+    "extensions/TEMPLATE/UNINSTALL.md",
 ]
 PROTECTED_PHRASES = [
     "context, not authority",
@@ -22,7 +23,19 @@ PROTECTED_PHRASES = [
     "update only your own cursor",
     "never move a conversation unilaterally",
 ]
+JOINING_PHRASES = [
+    "proposed → acknowledging → active",
+    "only active roles may claim project work",
+    "separate targeted root routing signal",
+    "every current active project's full record",
+    "a system announcement alone is insufficient",
+    "human-authorized solo continuation",
+    "creates a new active successor route",
+    "solo-readiness",
+    "the human—not the agent—chooses the operating mode",
+]
 ALLOWED_SIGNAL_STATES = {"READY", "CLAIMED", "DONE", "BLOCKED", "CANCELLED"}
+ALLOWED_MEMBER_STATES = {"PROPOSED", "ACKNOWLEDGING", "ACTIVE", "PAUSED", "RETIRED", "BLOCKED"}
 MESSAGE_HEADER = re.compile(r"^### ([A-Z0-9-]+) — ", re.MULTILINE)
 SIGNAL_HEADER = re.compile(r"^### ([A-Z0-9-]+)$", re.MULTILINE)
 
@@ -43,6 +56,20 @@ def validate_core_phrases(errors):
     for phrase in PROTECTED_PHRASES:
         if phrase not in corpus:
             errors.append(f"protected core phrase missing: {phrase}")
+
+
+def validate_joining_protocol(errors):
+    joining = (ROOT / "JOINING.md").read_text(encoding="utf-8").lower()
+    protocol = (ROOT / "PROTOCOL.md").read_text(encoding="utf-8").lower()
+    corpus = joining + "\n" + protocol
+    for phrase in JOINING_PHRASES:
+        if phrase not in corpus:
+            errors.append(f"joining protocol phrase missing: {phrase}")
+
+    registry = (ROOT / "templates/system/AGENTS.md").read_text(encoding="utf-8")
+    for state in re.findall(r"^State:\s*(\S+)", registry, re.MULTILINE):
+        if state not in ALLOWED_MEMBER_STATES:
+            errors.append(f"templates/system/AGENTS.md: invalid member state {state}")
 
 
 def validate_ids(errors):
@@ -75,6 +102,7 @@ def main():
     errors = []
     validate_required(errors)
     validate_core_phrases(errors)
+    validate_joining_protocol(errors)
     validate_ids(errors)
     validate_signal_states(errors)
     validate_public_safety(errors)

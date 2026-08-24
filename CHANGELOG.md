@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+- Added a formal multi-agent joining handshake.
+- Added stable-role membership states and capability registration.
+- Added acknowledgement, role-collision, cursor initialization, replacement, and blocked-join rules.
+- Added an empty operational agent registry template.
+- Added a human-authorized solo-continuation path for late specialists working from completed project history.
+
 ## 0.1.0-draft — 2026-08-24
 
 - Initial sanitized technical scaffold.

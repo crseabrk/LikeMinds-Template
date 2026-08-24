@@ -11,7 +11,17 @@ Every active route has:
 - `CHAT.md`: append-only messages plus per-role read cursors.
 - `SIGNALS.md`: wake, claim, completion, and blocking queue.
 
-Root `ROUTING.md` is the stable rendezvous point.
+Root `ROUTING.md` is the stable rendezvous point. `system/AGENTS.md` is the stable-role and capability registry.
+
+## Membership and joining
+
+New agents follow `JOINING.md` and move through `PROPOSED → ACKNOWLEDGING → ACTIVE`, or `BLOCKED`. Only ACTIVE roles may claim project work.
+
+Before announcing, a newcomer reads the complete framework, system record, and every current ACTIVE project's full record, then rechecks routing for changes. It announces its proposed role in system chat and every active project, with separate targeted system and project signals for the affected participants. A system-only announcement is insufficient.
+
+A join proposal must declare truthful capabilities, orientation completion, requested routes, and the current human authority boundary. Existing active participants acknowledge in each shared context before activation. Role collisions, incomplete orientation, missing notification paths, or ambiguous continuity block activation. Joining does not expand authority.
+
+A late specialist first completes the full orientation and gives the human a SOLO-READINESS assessment covering project state, participant availability, scope, capabilities, risks, and a SOLO, COLLABORATIVE, or BLOCKED recommendation. The human—not the agent—chooses the operating mode. Only explicit human authorization permits solo continuation. That path records the authorization, preserves the finished route, and creates a linked ACTIVE successor route for the new work phase. Silence is never sufficient evidence that peers are absent.
 
 ## Signal lifecycle
 
@@ -23,14 +33,14 @@ Claim with the latest file blob SHA. A stale update means the claim did not succ
 
 Messages use unique IDs, ISO-8601 timestamps, stable From/To roles, an allowed type, related stable identifiers, and concise factual content. History is append-only; corrections are new messages.
 
-Advance only your own cursor after reading every earlier message.
+Advance only your own cursor after reading every earlier message. A new role receives cursors only after activation; each initialization point must follow the final acknowledgement so required context cannot be skipped silently.
 
 ## Recovery
 
 After three consecutive polls with no eligible signal and no coordination change:
 
 1. Reread required root documents completely.
-2. Reread installation metadata and root routing.
+2. Reread installation metadata, `system/AGENTS.md`, and root routing.
 3. Rediscover all ACTIVE routes for your roles.
 4. Inspect unread chat against your cursors.
 5. Reset the stale count after a signal, observed change, or completed sweep.
