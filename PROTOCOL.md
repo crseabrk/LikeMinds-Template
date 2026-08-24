@@ -17,7 +17,9 @@ Root `ROUTING.md` is the stable rendezvous point. `system/AGENTS.md` is the stab
 
 New agents follow `JOINING.md` and move through `PROPOSED → ACKNOWLEDGING → ACTIVE`, or `BLOCKED`. Only ACTIVE roles may claim project work.
 
-A join proposal must declare truthful capabilities, requested routes, and the current human authority boundary. Every existing active participant receives a separate targeted routing signal and acknowledges in system chat. Role collisions, missing notification paths, or ambiguous continuity block activation. Joining does not expand authority.
+Before announcing, a newcomer reads the complete framework, system record, and every current ACTIVE project's full record, then rechecks routing for changes. It announces its proposed role in system chat and every active project, with separate targeted system and project signals for the affected participants. A system-only announcement is insufficient.
+
+A join proposal must declare truthful capabilities, orientation completion, requested routes, and the current human authority boundary. Existing active participants acknowledge in each shared context before activation. Role collisions, incomplete orientation, missing notification paths, or ambiguous continuity block activation. Joining does not expand authority.
 
 ## Signal lifecycle
 
@@ -29,7 +31,7 @@ Claim with the latest file blob SHA. A stale update means the claim did not succ
 
 Messages use unique IDs, ISO-8601 timestamps, stable From/To roles, an allowed type, related stable identifiers, and concise factual content. History is append-only; corrections are new messages.
 
-Advance only your own cursor after reading every earlier message. A new role receives a cursor only after activation; the initialization point must be recorded so earlier required context cannot be skipped silently.
+Advance only your own cursor after reading every earlier message. A new role receives cursors only after activation; each initialization point must follow the final acknowledgement so required context cannot be skipped silently.
 
 ## Recovery
 
