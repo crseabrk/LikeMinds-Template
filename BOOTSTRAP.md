@@ -17,7 +17,7 @@ Following this file authorizes only the LikeMinds coordination reads and narrowl
 ## Bootstrap procedure
 
 1. Read this file completely.
-2. Read `AGENTS.md`, `MANUAL.md`, `JOINING.md`, and `SECURITY.md` completely.
+2. Read `AGENTS.md`, `PROTOCOL.md`, `JOINING.md`, `JOIN-CHECKLIST.md`, and `SECURITY.md` completely.
 3. Inspect the repository before writing:
    - If `installation.yml` exists with real repository metadata and operational records already exist, this is an **existing installation**.
    - If only `installation.example.yml` and empty records under `templates/` exist, this is a **fresh template**.
