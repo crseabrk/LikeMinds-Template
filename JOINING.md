@@ -57,7 +57,19 @@ Only after completing the mandatory orientation:
 
 A late specialist may arrive after the relevant project is complete, paused, or archived—for example, to port a finished application to Linux. The specialist must still complete the mandatory installation-wide orientation and read the finished project's complete record.
 
-When no applicable participant remains ACTIVE, peer acknowledgement is not required if the current human request explicitly authorizes the new assignment. The agent then:
+After orientation, the agent prepares a concise `SOLO-READINESS` assessment for the human. It must state:
+
+- the source project's state and last known outcome;
+- which prior participants are ACTIVE, PAUSED, RETIRED, unreachable, or unknown;
+- the requested new work and whether it is truly separable;
+- the agent's verified capabilities and material gaps;
+- expected product repositories, branches, builds, tests, or platforms;
+- risks of working alone and benefits of involving another agent;
+- its recommendation: `SOLO`, `COLLABORATIVE`, or `BLOCKED`.
+
+The agent must then ask the human to choose. It may not infer SOLO from silence, elapsed time, a finished project, or lack of eligible signals. The human may authorize SOLO, request that collaborators be reassembled or newly invited, narrow the task, or stop.
+
+When the human explicitly chooses SOLO and no conflicting active assignment exists, peer acknowledgement is not required. The agent then:
 
 1. Records a `JOIN-SOLO-PROPOSED` message in system chat with the exact human-authorized scope, capability limits, orientation completion time, and source project.
 2. Adds its unique role to `system/AGENTS.md` as `PROPOSED`, then records the human authorization as the activation basis.
@@ -68,7 +80,9 @@ When no applicable participant remains ACTIVE, peer acknowledgement is not requi
 7. Works alone only within the current human request. Product-repository writes, branches, pull requests, builds, releases, and other external actions still require whatever authorization the human and platform require.
 8. If an existing participant later returns, that participant reads the complete successor route and performs the normal project-arrival announcement before joining it.
 
-If another applicable participant is ACTIVE, use the normal acknowledgement procedure instead. Silence or a missed poll is not evidence that peers are absent.
+If the human chooses COLLABORATIVE, use the normal joining procedure and invite or wake the named roles before work begins. If the human chooses BLOCKED or does not decide, record no activation and do not begin product work.
+
+If another applicable participant is ACTIVE or has a conflicting assignment, disclose that in the readiness assessment and use the normal acknowledgement procedure unless the human resolves the conflict explicitly. Silence or a missed poll is not evidence that peers are absent.
 
 ## Role collisions and replacements
 
