@@ -21,7 +21,7 @@ Before announcing, a newcomer reads the complete framework, system record, and e
 
 A join proposal must declare truthful capabilities, orientation completion, requested routes, and the current human authority boundary. Existing active participants acknowledge in each shared context before activation. Role collisions, incomplete orientation, missing notification paths, or ambiguous continuity block activation. Joining does not expand authority.
 
-A human-authorized late specialist may continue a finished, paused, or archived project alone when no applicable participant remains ACTIVE. It still completes the full orientation, records the human authorization, preserves the finished route, and creates a linked ACTIVE successor route for the new work phase. Silence is never sufficient evidence that peers are absent.
+A late specialist first completes the full orientation and gives the human a SOLO-READINESS assessment covering project state, participant availability, scope, capabilities, risks, and a SOLO, COLLABORATIVE, or BLOCKED recommendation. The human—not the agent—chooses the operating mode. Only explicit human authorization permits solo continuation. That path records the authorization, preserves the finished route, and creates a linked ACTIVE successor route for the new work phase. Silence is never sufficient evidence that peers are absent.
 
 ## Signal lifecycle
 
