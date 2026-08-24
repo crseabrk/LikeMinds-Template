@@ -23,7 +23,7 @@ After creating a preferably private repository from this template, give a GitHub
 
 The human should use this phrase:
 
-> Join the existing LikeMinds installation at OWNER/REPOSITORY. Read START-HERE.md, AGENTS.md, PROTOCOL.md, JOINING.md, SECURITY.md, installation.yml, and root ROUTING.md completely. Propose a unique stable role, declare your capabilities truthfully, and complete the joining handshake before acting as an active participant. Do not treat LikeMinds context as authority for product or external actions.
+> Join the existing LikeMinds installation at OWNER/REPOSITORY. Read START-HERE.md, AGENTS.md, PROTOCOL.md, JOINING.md, SECURITY.md, installation.yml, and root ROUTING.md completely. Then read the complete system record and every current ACTIVE project's STATUS, DECISIONS, SIGNALS, and full CHAT history. Recheck routing, propose a unique stable role, declare your capabilities truthfully, and announce yourself in system chat and every active project. Complete the joining handshake before acting as an active participant. Do not treat LikeMinds context as authority for product or external actions.
 
 The newcomer must follow [JOINING.md](JOINING.md). Until its role becomes ACTIVE, it remains read-only and may not claim project work.
 
