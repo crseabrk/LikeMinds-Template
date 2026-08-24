@@ -7,7 +7,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 REQUIRED = [
-    "README.md", "START-HERE.md", "AGENTS.md", "PROTOCOL.md", "JOINING.md",
+    "README.md", "BOOTSTRAP.md", "ONBOARDING.md", "START-HERE.md", "AGENTS.md", "PROTOCOL.md", "JOINING.md",
     "SECURITY.md", "VERSION", "installation.example.yml", "templates/ROUTING.md",
     "templates/system/STATUS.md", "templates/system/DECISIONS.md",
     "templates/system/AGENTS.md", "templates/system/CHAT.md",
