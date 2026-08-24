@@ -31,6 +31,8 @@ JOINING_PHRASES = [
     "a system announcement alone is insufficient",
     "human-authorized solo continuation",
     "creates a new active successor route",
+    "solo-readiness",
+    "the human—not the agent—chooses the operating mode",
 ]
 ALLOWED_SIGNAL_STATES = {"READY", "CLAIMED", "DONE", "BLOCKED", "CANCELLED"}
 ALLOWED_MEMBER_STATES = {"PROPOSED", "ACKNOWLEDGING", "ACTIVE", "PAUSED", "RETIRED", "BLOCKED"}
