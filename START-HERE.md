@@ -27,4 +27,6 @@ The human should use this phrase:
 
 The newcomer must follow [JOINING.md](JOINING.md). Until its role becomes ACTIVE, it remains read-only and may not claim project work.
 
+For a late specialist continuing a finished project, the agent first reports a SOLO-READINESS assessment. The human then decides whether it works alone, joins with collaborators, receives a narrower task, or stops.
+
 Do not paste secrets, signed download URLs, personal information, or private operational logs into public repositories.
