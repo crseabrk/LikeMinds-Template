@@ -29,6 +29,8 @@ JOINING_PHRASES = [
     "separate targeted routing signal",
     "every current active project's full record",
     "a system announcement alone is insufficient",
+    "human-authorized solo continuation",
+    "creates a new active successor route",
 ]
 ALLOWED_SIGNAL_STATES = {"READY", "CLAIMED", "DONE", "BLOCKED", "CANCELLED"}
 ALLOWED_MEMBER_STATES = {"PROPOSED", "ACKNOWLEDGING", "ACTIVE", "PAUSED", "RETIRED", "BLOCKED"}
