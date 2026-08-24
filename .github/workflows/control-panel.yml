@@ -1,0 +1,115 @@
+name: LikeMinds control panel
+
+on:
+  workflow_dispatch:
+    inputs:
+      stable_role:
+        description: Stable agent role (exactly as registered)
+        required: true
+        type: string
+      agent_state:
+        description: Agent state
+        required: true
+        default: ACTIVE
+        type: choice
+        options: [ACTIVE, READ_ONLY, PAUSED, REVOKED]
+      poll_interval:
+        description: Requested heartbeat interval
+        required: true
+        default: 3 minutes
+        type: choice
+        options: [30 seconds, 3 minutes, 10 minutes, MANUAL]
+      product_writes:
+        description: Product repository writes
+        required: true
+        default: ASK
+        type: choice
+        options: [ALLOW, ASK, DENY]
+      pull_requests:
+        description: Create or update pull requests
+        required: true
+        default: ASK
+        type: choice
+        options: [ALLOW, ASK, DENY]
+      merge:
+        description: Merge pull requests
+        required: true
+        default: DENY
+        type: choice
+        options: [ALLOW, ASK, DENY]
+      release:
+        description: Publish releases
+        required: true
+        default: DENY
+        type: choice
+        options: [ALLOW, ASK, DENY]
+      external_communication:
+        description: Communicate outside LikeMinds
+        required: true
+        default: DENY
+        type: choice
+        options: [ALLOW, ASK, DENY]
+      note:
+        description: Human note or scope restriction
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: likeminds-human-control
+  cancel-in-progress: false
+
+jobs:
+  record:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Require an initialized control ledger
+        shell: bash
+        run: test -f HUMAN-CONTROL.md
+
+      - name: Append the human request
+        shell: bash
+        env:
+          LM_ROLE: ${{ inputs.stable_role }}
+          LM_STATE: ${{ inputs.agent_state }}
+          LM_POLL: ${{ inputs.poll_interval }}
+          LM_PRODUCT: ${{ inputs.product_writes }}
+          LM_PRS: ${{ inputs.pull_requests }}
+          LM_MERGE: ${{ inputs.merge }}
+          LM_RELEASE: ${{ inputs.release }}
+          LM_EXTERNAL: ${{ inputs.external_communication }}
+          LM_NOTE: ${{ inputs.note }}
+          LM_ACTOR: ${{ github.actor }}
+          LM_RUN: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          {
+            printf '\n### CONTROL-%s\n' "$GITHUB_RUN_ID"
+            printf 'Requested-At: %s\n' "$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+            printf 'Requested-By: @%s\n' "$LM_ACTOR"
+            printf 'Stable-Role: %s\n' "$LM_ROLE"
+            printf 'Agent-State: %s\n' "$LM_STATE"
+            printf 'Poll-Interval: %s\n' "$LM_POLL"
+            printf 'Product-Writes: %s\n' "$LM_PRODUCT"
+            printf 'Pull-Requests: %s\n' "$LM_PRS"
+            printf 'Merge: %s\n' "$LM_MERGE"
+            printf 'Release: %s\n' "$LM_RELEASE"
+            printf 'External-Communication: %s\n' "$LM_EXTERNAL"
+            printf 'Note: %s\n' "$LM_NOTE"
+            printf 'Evidence: %s\n' "$LM_RUN"
+            printf 'Applied: PENDING\n'
+          } >> HUMAN-CONTROL.md
+
+      - name: Commit the request
+        shell: bash
+        run: |
+          git config user.name "LikeMinds control panel"
+          git config user.email "actions@users.noreply.github.com"
+          git add HUMAN-CONTROL.md
+          git commit -m "Record human control request $GITHUB_RUN_ID"
+          git push
