@@ -61,6 +61,12 @@ Moves use `PROPOSED → ACKNOWLEDGING → ACTIVE`.
 
 Shared living files require latest-SHA replacement. On conflict, preserve the winning update, reread, and reapply only still-valid changes. Never force or silently overwrite another agent's state.
 
+## Human control and reporting
+
+`HUMAN-CONTROL.md` is an append-only ledger of authenticated human requests submitted through the GitHub Actions control-panel form. Every heartbeat reads it before claiming work. The newest valid request for a stable role supplies its requested state, polling interval, and permission posture.
+
+`HUMAN-STATUS.md` reports what each agent actually applied. Each agent updates only its own row and distinguishes requested from applied settings. Permission reductions apply immediately. Increases remain pending until the affected agent verifies that they fit its actual capabilities, governing instructions, and current human authorization. A repository record cannot reconfigure another task directly; each task applies and acknowledges its own automation change.
+
 ## Extensions
 
 Load order: core → official extensions → installation policy → project extensions → current human authorization. Later layers may narrow but never expand authority beyond the current human request.
