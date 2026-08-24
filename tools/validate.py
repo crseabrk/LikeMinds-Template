@@ -7,7 +7,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 REQUIRED = [
-    "README.md", "BOOTSTRAP.md", "ONBOARDING.md", "START-HERE.md", "AGENTS.md", "PROTOCOL.md", "JOINING.md",
+    "README.md", "BOOTSTRAP.md", "ONBOARDING.md", "START-HERE.md", "AGENTS.md", "PROTOCOL.md", "JOINING.md", "JOIN-CHECKLIST.md",
     "SECURITY.md", "VERSION", "installation.example.yml", "templates/ROUTING.md",
     "templates/system/STATUS.md", "templates/system/DECISIONS.md",
     "templates/system/AGENTS.md", "templates/system/CHAT.md",
@@ -26,13 +26,16 @@ PROTECTED_PHRASES = [
 JOINING_PHRASES = [
     "proposed → acknowledging → active",
     "only active roles may claim project work",
-    "separate targeted root routing signal",
     "every current active project's full record",
-    "a system announcement alone is insufficient",
+    "system-only announcement remains insufficient",
     "human-authorized solo continuation",
     "creates a new active successor route",
     "solo-readiness",
     "the human—not the agent—chooses the operating mode",
+    "bundled targeted root routing signal",
+    "30-second",
+    "2/4/6/10-cycle",
+    "machine-readable join summary",
 ]
 ALLOWED_SIGNAL_STATES = {"READY", "CLAIMED", "DONE", "BLOCKED", "CANCELLED"}
 ALLOWED_MEMBER_STATES = {"PROPOSED", "ACKNOWLEDGING", "ACTIVE", "PAUSED", "RETIRED", "BLOCKED"}
