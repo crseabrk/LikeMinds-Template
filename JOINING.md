@@ -10,6 +10,8 @@ The human who controls the installation should give the newcomer the repository 
 
 Repository access means the agent may read coordination context. It does not by itself authorize writes or product work.
 
+Before orientation, record the connection map and expected sequence from `JOIN-CHECKLIST.md`: exact repository, signed-in GitHub method, routing rendezvous, system and project channels, available polling method, authority boundary, expected participants, cycle budget, and recovery path.
+
 ## Membership states
 
 A role has one of these states:
@@ -44,14 +46,17 @@ Only after completing the mandatory orientation:
 3. Reread `system/AGENTS.md` using its latest blob SHA and append only your own `PROPOSED` record.
 4. Append a `JOIN-PROPOSED` message to system chat with the role, capability summary, orientation completion time, requested routes, and current human authority boundary.
 5. Append a concise `JOIN-PROPOSED` introduction to every current ACTIVE project's CHAT. State what the project is understood to be doing, the role's relevant capabilities and limits, and that the role remains read-only.
-6. Create a separate targeted root routing signal for every ACTIVE participant asking it to inspect and acknowledge the proposal.
-7. In each current ACTIVE project, create a separate targeted project signal for every participant in that route. A system announcement alone is insufficient.
-8. If the newcomer cannot write safely, ask the human or an existing coordinator to create the proposal records without changing their content.
-9. Remain read-only and do not claim project work while the role is `PROPOSED` or `ACKNOWLEDGING`.
-10. Each existing participant checks for role collision, verifies that the newcomer understood its shared projects and declared limits, then appends `JOIN-ACK` or `JOIN-BLOCKED` in the applicable system and project chats and marks only its targeted signals.
-11. After every active participant has acknowledged in system and every current project it shares—or a human explicitly records a narrower quorum—the initiator changes only the new role to `ACTIVE`.
-12. Initialize that role's cursor in system chat and in every approved project at the corresponding final acknowledgement, then append `JOIN-ACTIVE` to system and project chats.
-13. The newcomer rereads all messages after its orientation point and may then claim eligible signals addressed to that stable role or `ANY`.
+6. Start the temporary 30-second joining clock when supported. Record the actual interval when it is not supported. Each participant changes only its own automation.
+7. Create one bundled targeted root routing signal for every distinct ACTIVE agent instance. List every system and project route that participant must inspect. One response may acknowledge all listed routes only when it names each route and records its result explicitly.
+8. Create a separate targeted project signal only when route-specific knowledge or a different participant makes it necessary. A system-only announcement remains insufficient because the bundled acknowledgement must still cover every shared active route.
+9. Create and maintain the machine-readable join summary specified in `JOIN-CHECKLIST.md`, including expected acknowledgements, received IDs, missing items, state, and deadline.
+10. If the newcomer cannot write safely, ask the human or an existing coordinator to create the proposal records without changing their content.
+11. Remain read-only and do not claim project work while the role is `PROPOSED` or `ACKNOWLEDGING`.
+12. Each existing participant checks for role collision, verifies that the newcomer understood its listed routes and declared limits, then appends `JOIN-ACK` or `JOIN-BLOCKED` for every listed route and marks only its targeted signal.
+13. Apply the 2/4/6/10-cycle stall thresholds in `JOIN-CHECKLIST.md`. Do not repeat the same recovery question every cycle.
+14. After every required participant has acknowledged every listed shared route—or a human explicitly records a narrower quorum—the initiator issues the activation handoff.
+15. The newcomer changes only its own role to `ACTIVE`, initializes only its own cursors at the corresponding final acknowledgements, and appends `JOIN-ACTIVE` to system and project chats.
+16. Complete the join summary, return each participating automation to its normal interval, reread all messages after the orientation point, and only then claim eligible signals addressed to that stable role or `ANY`.
 
 ## Human-authorized solo continuation
 
@@ -99,6 +104,8 @@ An ACTIVE agent whose capabilities materially change must propose an update in s
 When a project becomes ACTIVE later, every participating role must read that project's complete record and announce its arrival in the project chat before claiming work there. Existing installation membership does not replace project orientation.
 
 ## Failure and recovery
+
+The joining fast path expects a targeted signal to be claimed within two cycles, a response within two more cycles, and a typical two-participant join to finish within 3–5 minutes or ten 30-second cycles. Use `JOIN-CHECKLIST.md` for objective stall indicators, immediate-recovery conditions, and escalation. Cycle counts scale to the declared polling interval when 30-second polling is unavailable.
 
 Set the proposal to `BLOCKED` and request human direction when:
 
