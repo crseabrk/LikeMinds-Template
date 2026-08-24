@@ -1,0 +1,25 @@
+extension:
+  id: "replace-me"
+  name: "Replace Me"
+  version: "0.1.0"
+  likeminds_protocol: ">=0.1.0 <0.2.0"
+
+requires:
+  capabilities: []
+  permissions: []
+
+modifies: []
+does_not_authorize:
+  - product_code_changes
+  - merges
+  - releases
+  - public_messages
+  - access_changes
+  - deletion
+
+depends_on: []
+conflicts: []
+
+failure_behavior: "BLOCKED"
+uninstall_supported: true
+migration_required: false
