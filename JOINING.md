@@ -53,6 +53,23 @@ Only after completing the mandatory orientation:
 12. Initialize that role's cursor in system chat and in every approved project at the corresponding final acknowledgement, then append `JOIN-ACTIVE` to system and project chats.
 13. The newcomer rereads all messages after its orientation point and may then claim eligible signals addressed to that stable role or `ANY`.
 
+## Human-authorized solo continuation
+
+A late specialist may arrive after the relevant project is complete, paused, or archived—for example, to port a finished application to Linux. The specialist must still complete the mandatory installation-wide orientation and read the finished project's complete record.
+
+When no applicable participant remains ACTIVE, peer acknowledgement is not required if the current human request explicitly authorizes the new assignment. The agent then:
+
+1. Records a `JOIN-SOLO-PROPOSED` message in system chat with the exact human-authorized scope, capability limits, orientation completion time, and source project.
+2. Adds its unique role to `system/AGENTS.md` as `PROPOSED`, then records the human authorization as the activation basis.
+3. Does not reopen, rewrite, or append working messages to the finished route merely to continue it.
+4. Creates a new ACTIVE successor route for the new phase, such as a Linux port, linked to the finished source route and product repository.
+5. Copies no history. The successor STATUS points to the source records as read-only context and states the new scope and non-authorizations.
+6. Adds itself as the initial participant, initializes its own system and successor-route cursors, changes its role to `ACTIVE`, and appends `JOIN-SOLO-ACTIVE`.
+7. Works alone only within the current human request. Product-repository writes, branches, pull requests, builds, releases, and other external actions still require whatever authorization the human and platform require.
+8. If an existing participant later returns, that participant reads the complete successor route and performs the normal project-arrival announcement before joining it.
+
+If another applicable participant is ACTIVE, use the normal acknowledgement procedure instead. Silence or a missed poll is not evidence that peers are absent.
+
 ## Role collisions and replacements
 
 If a requested role already exists, do not overwrite or silently assume it. Use a different role or record a human-approved replacement. A replacement must preserve the old record, use a new stable identifier, and include a handoff message explaining which routes and unread work transfer.
