@@ -17,7 +17,7 @@ Root `ROUTING.md` is the stable rendezvous point. `system/AGENTS.md` is the stab
 
 New agents follow `JOINING.md` and move through `PROPOSED → ACKNOWLEDGING → ACTIVE`, or `BLOCKED`. Only ACTIVE roles may claim project work.
 
-Before announcing, a newcomer reads the complete framework, system record, and every current ACTIVE project's full record, then rechecks routing for changes. It announces its proposed role in system chat and every active project, with separate targeted system and project signals for the affected participants. A system-only announcement is insufficient.
+Before announcing, a newcomer reads the complete framework, system record, and every current ACTIVE project's full record, then rechecks routing for changes. It announces its proposed role in system chat and every active project. A system-only announcement is insufficient. Acknowledgements are bundled per distinct active agent instance: one targeted routing signal lists every route that participant must inspect, and one response may explicitly cover all listed routes. Separate project signals are required only where route-specific knowledge or different participants make them necessary.
 
 A join proposal must declare truthful capabilities, orientation completion, requested routes, and the current human authority boundary. Existing active participants acknowledge in each shared context before activation. Role collisions, incomplete orientation, missing notification paths, or ambiguous continuity block activation. Joining does not expand authority.
 
@@ -36,6 +36,8 @@ Messages use unique IDs, ISO-8601 timestamps, stable From/To roles, an allowed t
 Advance only your own cursor after reading every earlier message. A new role receives cursors only after activation; each initialization point must follow the final acknowledgement so required context cannot be skipped silently.
 
 ## Recovery
+
+While any join is `PROPOSED` or `ACKNOWLEDGING`, joining takes priority over ordinary coordination. Participating agents that support recurring polling temporarily use a 30-second interval and change only their own automations. The join records its expected participants, routes, acknowledgement count, received IDs, missing items, deadline, and state. Apply the 2/4/6/10-cycle recovery thresholds in `JOIN-CHECKLIST.md`; return clocks to normal after `JOIN-ACTIVE` or `JOIN-BLOCKED`.
 
 After three consecutive polls with no eligible signal and no coordination change:
 
