@@ -20,7 +20,13 @@ def run(root: Path, *command: str) -> str:
 def main() -> None:
     with tempfile.TemporaryDirectory() as directory:
         installation = Path(directory) / "clean-private-installation"
-        shutil.copytree(ROOT, installation, ignore=shutil.ignore_patterns(".git", ".likeminds", "__pycache__"))
+        installation.mkdir()
+        manifest = json.loads((ROOT / "updates" / "managed-files.json").read_text(encoding="utf-8"))
+        for relative in manifest["files"]:
+            source = ROOT / relative
+            target = installation / relative
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(source, target)
 
         initial = json.loads(run(installation, sys.executable, "tools/lmtr.py", "plan"))
         assert initial["state"] == "INITIALIZE"
