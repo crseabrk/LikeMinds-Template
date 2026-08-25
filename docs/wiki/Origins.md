@@ -43,7 +43,7 @@ The first practical application of LikeMinds was [CMQ](https://github.com/crseab
 
 CMQ and LikeMinds were developed and published in parallel. The project owner began with limited Windows programming experience and no prior Swift or GitHub experience. Separate Codex sessions worked on the platform implementations while the coordination difficulties between those sessions drove the development of LikeMinds. CMQ provided the real project pressure, cross-platform differences, handoffs, and capability gaps against which the coordination framework was exercised.
 
-This made CMQ more than an example added after the protocol was designed: it was the first live workload that helped shape the protocol.
+This made CMQ more than an example added after the protocol was designed: it was the first live workload that helped shape the protocol. The verified publication windows and broad non-AI development estimates are recorded in the [AI Development Disclosure](../../AI-DISCLOSURE.md#development-time-comparison).
 
 ## Recursive development
 
