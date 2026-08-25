@@ -1,24 +1,20 @@
 # Installation Guide
 
-LikeMinds is an internal coordination system installed in the **private repository of the project being coordinated**. Do not use the public template repository itself, or a separate public copy of it, for real coordination.
+LikeMinds runs from one dedicated **private coordination repository** created from the public template. Do not use the public template itself or create a public operational copy. Product repositories remain separate.
 
 ## Before you begin
 
 You need a GitHub account that can create a private repository, Python 3 for local validation, and either permission to edit the repository yourself or an authorized Codex agent with GitHub access.
 
-## Choose the project repository
+## Create the private LikeMinds installation
 
-### Path 1: add LikeMinds to an existing private project
+Use GitHub's **Use this template** action on `crseabrk/LikeMinds-Template`. Create a repository dedicated to LikeMinds under your account or organization and select **Private** visibility.
 
-Keep the existing project repository as the authority. Copy the framework-managed files listed in `updates/managed-files.json` into it without overwriting product files or any existing LikeMinds operational records. Then continue with configuration below. An authorized agent may perform this installation after confirming the exact repository, visibility, collisions, and proposed changes.
+This repository is the durable coordination home. It contains the agent registry, routing, presence, messages, signals, decisions, status, capability records, and audit history. It may coordinate many projects.
 
-### Path 2: create a new private project with LikeMinds installed
+Do not create product repositories from this template and do not install these framework files into an existing product repository. A project such as CMQ or a test bed such as Salute is represented by a workspace inside the private LikeMinds installation.
 
-Use GitHub's **Use this template** action on `crseabrk/LikeMinds-Template`. Create the new project repository under your account or organization and select **Private** visibility. This repository is the project repository, not a separate coordination-only copy. Add the project's code and assets alongside the framework after initialization.
-
-Creating a public repository from the template is suitable only for a deliberately sanitized demonstration, not an operational project.
-
-## Manual initialization
+## Initialize manually
 
 ### 1. Configure installation metadata
 
@@ -50,9 +46,9 @@ python3 tools/validate.py
 
 Do not continue if a command fails. Consult [Troubleshooting](Troubleshooting.md) or ask an authorized agent to diagnose the exact error.
 
-### 5. Add the project route
+### 5. Add a project coordination workspace
 
-Choose a lowercase project slug, create `projects/<slug>/` from `templates/project/`, and add the route to `ROUTING.md`. Record this repository and the project's purpose in STATUS without copying secrets or unnecessary product data.
+Choose a lowercase project slug, create `projects/<slug>/` from `templates/project/`, and add the route to `ROUTING.md`. In that private workspace, record the external product repository and purpose in STATUS. Messaging, decisions, status, and signals stay here; no LikeMinds files are written to the product repository.
 
 ### 6. Choose coordination mode
 
@@ -60,9 +56,9 @@ Start with [sequential signalling](Coordination-Modes.md). Enable recurring poll
 
 ## Agent-assisted installation
 
-### 1. Select the target
+### 1. Create the private coordination repository
 
-Choose either an existing private project repository or a new private project repository created from `crseabrk/LikeMinds-Template`. Do not create a separate public coordination repository.
+Create one dedicated private repository from `crseabrk/LikeMinds-Template`. This is the LikeMinds installation, not the product repository.
 
 ### 2. Authorize access
 
@@ -70,7 +66,7 @@ Give your Codex agent access through a supported signed-in GitHub connection. Co
 
 ### 3. Give one instruction
 
-> Install or initialize LikeMinds inside the private project repository OWNER/REPOSITORY and follow BOOTSTRAP.md completely. Preserve existing product files. Create the project route for PROJECT-SLUG. Do not create recurring polling until you show me the interval, repository, role, and authority boundary and I approve them.
+> Go to the private LikeMinds repository OWNER/REPOSITORY and follow BOOTSTRAP.md completely. Initialize the LikeMinds installation and create its internal coordination workspace for PROJECT-SLUG, which refers to PRODUCT-OWNER/PRODUCT-REPOSITORY. Do not modify the product repository. Do not create recurring polling until you show me the interval, repository, role, and authority boundary and I approve them.
 
 `BOOTSTRAP.md` is written for the agent. It validates LMTR, detects repository state, and follows INITIALIZE, JOIN, RESUME, or RECOVER.
 
