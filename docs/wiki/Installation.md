@@ -12,7 +12,7 @@ Choose **Use this template** on `crseabrk/LikeMinds-Template`. GitHub may select
 
 The public template cannot enforce creation-form choices. Bootstrap stops before operational initialization if visibility is public, but the human should correct the form before the repository is created.
 
-![Annotated GitHub creation form showing the required owner, LikeMinds repository name, branches-off setting, and Private visibility](../images/create-private-likeminds-repository.png)
+![Annotated GitHub creation form showing the required owner, LikeMinds repository name, branches-off setting, and Private visibility](../images/create-private-likeminds-repository.webp)
 
 This repository is the durable coordination home. It contains the agent registry, routing, presence, messages, signals, decisions, status, capability records, and audit history. It may coordinate many projects.
 
