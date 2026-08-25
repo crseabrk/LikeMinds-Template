@@ -36,3 +36,7 @@ When an assigned operation needs a missing or unverified capability, the agent s
 Suitable alternatives may include providing a local checkout, assigning a capable agent, narrowing the task to static review, exporting an artifact for another environment, or explicitly approving a connector-only coordination write. Never describe a weaker substitute as equivalent verification.
 
 The human chooses whether to add capability, reassign the operation, accept a narrower result, approve a bounded fallback, or stop. Agents do not expand their own permissions, alter another role's profile, or silently bypass a requirement.
+
+## On-demand audit
+
+When asked, the agent performs the evidence-based [Capability Audit](Capability-Audit.md). It reports a scored Basic LMTR section, a separately scored Current Project section, limiting factors, mitigation suggestions, and the human decisions required. The score measures readiness for the named route and operation; it is not authority and is not transferable to another project or environment.
