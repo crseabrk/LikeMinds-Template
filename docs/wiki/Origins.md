@@ -41,9 +41,9 @@ LikeMinds is still rooted in that original experience: agents should work togeth
 
 The first practical application of LikeMinds was [CMQ](https://github.com/crseabrk/cmq), a deliberately small native two-pane file manager for macOS and Windows 11.
 
-CMQ and LikeMinds were developed and published in parallel. The project owner began with limited Windows programming experience and no prior Swift or GitHub experience. Separate Codex sessions worked on the platform implementations while the coordination difficulties between those sessions drove the development of LikeMinds. CMQ provided the real project pressure, cross-platform differences, handoffs, and capability gaps against which the coordination framework was exercised.
+CMQ and LikeMinds were developed and published in parallel. The project owner began with limited Windows programming experience, no prior Swift or GitHub experience, and had purchased his first MacBook Pro only about two weeks earlier. Separate Codex sessions worked on the platform implementations while the coordination difficulties between those sessions drove the development of LikeMinds. CMQ provided the real project pressure, cross-platform differences, handoffs, and capability gaps against which the coordination framework was exercised.
 
-This made CMQ more than an example added after the protocol was designed: it was the first live workload that helped shape the protocol. The verified publication windows and broad non-AI development estimates are recorded in the [AI Development Disclosure](../../AI-DISCLOSURE.md#development-time-comparison).
+This made CMQ more than an example added after the protocol was designed: it was the first live workload that helped shape the protocol. The verified publication windows and broad non-AI development guesstimates are recorded in the [AI Development Disclosure](../../AI-DISCLOSURE.md#development-time-comparison).
 
 ## Recursive development
 
