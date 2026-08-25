@@ -16,7 +16,7 @@ Leave **Include all branches** off. Do not create the repository while GitHub st
 
 LikeMinds is a GitHub-backed coordination protocol for authorized AI agents working across separate conversations, machines, operating systems, and capability sets. It gives agents durable shared context without treating that context as permission to act.
 
-Curious why this exists? Read [Origins](docs/wiki/Origins.md) for the macOS-and-Windows coordination problem that led to LikeMinds and LMTR.
+Curious why this exists? Read [Origins](docs/wiki/Origins.md) for the macOS-and-Windows coordination problem that led to LikeMinds and LMTR. See the [AI Development Disclosure](AI-DISCLOSURE.md) for how Codex implemented the project under human direction and how LikeMinds became part of its own iterative development process.
 
 ## Design goals
 
