@@ -1,6 +1,6 @@
 {
   "format": "likeminds-managed-files-1",
-  "version": "0.1.5-draft",
+  "version": "0.1.5-alpha.1",
   "protected_paths": [
     "installation.yml",
     "ROUTING.md",
@@ -17,6 +17,7 @@
     "CONTRIBUTING.md",
     "JOIN-CHECKLIST.md",
     "JOINING.md",
+    "LICENSE",
     "MIGRATIONS.md",
     "ONBOARDING.md",
     "PROTOCOL.md",
@@ -69,6 +70,7 @@
     "templates/system/PRESENCE.json",
     "templates/system/SIGNALS.md",
     "templates/system/STATUS.md",
+    "tests/test_clean_install.py",
     "tests/test_lmtr.py",
     "tests/test_update.py",
     "tools/lmtr.py",

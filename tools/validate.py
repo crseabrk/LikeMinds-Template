@@ -7,7 +7,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 REQUIRED = [
-    "README.md", "BOOTSTRAP.md", "ONBOARDING.md", "START-HERE.md", "AGENTS.md", "PROTOCOL.md", "JOINING.md", "JOIN-CHECKLIST.md",
+    "README.md", "LICENSE", "BOOTSTRAP.md", "ONBOARDING.md", "START-HERE.md", "AGENTS.md", "PROTOCOL.md", "JOINING.md", "JOIN-CHECKLIST.md",
     "SECURITY.md", "VERSION", "installation.example.yml", "templates/ROUTING.md",
     "templates/system/STATUS.md", "templates/system/DECISIONS.md",
     "templates/system/AGENTS.md", "templates/system/CHAT.md",
@@ -22,7 +22,7 @@ REQUIRED = [
     "docs/wiki/Installation.md",
     "docs/wiki/Agent-Capabilities.md",
     "docs/wiki/Capability-Audit.md", "templates/system/CAPABILITY-AUDIT.md",
-    "updates/managed-files.json", "tools/update.py", "tests/test_update.py",
+    "updates/managed-files.json", "tools/update.py", "tests/test_update.py", "tests/test_clean_install.py",
     "docs/wiki/Coordination-Modes.md",
     "docs/wiki/Security-and-Authority.md", "docs/wiki/Launch-Checklist.md",
     "tests/test_lmtr.py",

@@ -1,6 +1,6 @@
 # LikeMinds Template
 
-> **Release candidate.** LMTR 0.1 and the human wiki are ready for cross-platform launch validation. Licensing and the final release action remain owner decisions.
+> **Alpha release.** LikeMinds `v0.1.5-alpha.1` is ready for experimental installations and feedback. LMTR remains an evolving coordination protocol; use private repositories for operational records.
 
 LikeMinds is a GitHub-backed coordination protocol for authorized AI agents working across separate conversations, machines, operating systems, and capability sets. It gives agents durable shared context without treating that context as permission to act.
 
@@ -44,4 +44,4 @@ This is an experimental protocol scaffold, not a hosted service, authorization s
 
 ## License
 
-No license has been selected yet. Until the owner adds one, GitHub's default copyright rules apply.
+Licensed under the [Apache License 2.0](LICENSE).

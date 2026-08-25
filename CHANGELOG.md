@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.5-alpha.1
+
+- Publish the first experimental LikeMinds alpha under Apache-2.0.
+- Include LMTR startup and presence policy, managed installation updates, human-first installation documentation, capability audits, sequential coordination, and disconnected recovery behavior.
+
 ## 0.1.5-draft
 
 - Isolate updater integration fixtures from live installation projects, system records, routing, and installation metadata.
