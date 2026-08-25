@@ -14,9 +14,29 @@ LikeMinds is recursively developed: it was created to solve the coordination pro
 
 The project began while separate Codex sessions were developing and porting work across macOS and Windows. Early coordination was performed manually by the human project owner, who copied context, decisions, progress, and instructions between sessions. LikeMinds was introduced to replace that manual relay with a durable, GitHub-backed coordination framework.
 
+The first practical application was [CMQ](https://github.com/crseabrk/cmq), a native two-pane file manager for macOS and Windows 11. CMQ and LikeMinds were developed and published in parallel. The project owner began with limited Windows programming experience, no prior Swift or GitHub experience, and a first MacBook Pro purchased only about two weeks before this work began. CMQ supplied the real cross-platform workload through which the coordination problems and emerging framework were tested.
+
 As the framework became usable, the participating Codex agents increasingly used the evolving LikeMinds system to coordinate its own design, implementation, testing, migration, and release preparation. Operational experience exposed missing states and failure modes; those discoveries became new protocol requirements. Presence handling, recovery, capability audits, onboarding, message cursors, managed updates, and the LMTR startup layer were refined iteratively as the system was exercised.
 
 In that limited and practical sense, LikeMinds helped create itself. The phrase does not imply consciousness, independent intent, or autonomous authority. It describes a recursive engineering process in which the developing coordination framework became part of the toolchain used to continue its own development.
+
+## Development-time comparison
+
+Neither project used formal time tracking, and both contained work that predated their public repositories. Total human and agent labor hours therefore cannot be reconstructed from GitHub. The following actual figures are verifiable public-repository calendar windows, not claims about total coding time:
+
+| Project | Verifiable actual window |
+| --- | --- |
+| CMQ | Public repository created 22 August 2026 at 14:45 UTC; version 1.0.0 published at 15:06 UTC, 21 minutes later. Continued fixes and coordination changes were recorded over the following two days. The unusually short creation-to-release interval confirms that implementation work existed before the public repository. |
+| LikeMinds Template | Public repository created 24 August 2026 at 17:30 UTC; alpha.1 published 14 hours 15 minutes later and alpha.2 published 19 hours 38 minutes after repository creation. Earlier private coordination work predated the public template. |
+
+A counterfactual without generative AI cannot be measured. The following broad guesstimates reflect the delivered scope and the project owner's starting point—limited Windows programming experience, no Swift or GitHub experience, and only about two weeks of Mac ownership:
+
+| Project | Experienced solo developer without generative AI | Project owner at the stated starting experience |
+| --- | --- | --- |
+| CMQ | Approximately 4–8 full-time weeks | Approximately 3–6 months including Swift, macOS, cross-platform, packaging, and GitHub learning |
+| LikeMinds | Approximately 6–12 full-time weeks | Approximately 4–9 months including protocol design, Python tooling, testing, Git/GitHub, CI, security, and documentation learning |
+
+These are reasoned order-of-magnitude guesstimates, not productivity measurements, promises, or audited labor figures. The projects overlapped, so their calendar estimates should not simply be added. They are included to communicate the likely scale of acceleration while preserving uncertainty about effort that was never formally logged.
 
 ## Responsibility and authority
 
