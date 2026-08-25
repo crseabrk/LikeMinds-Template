@@ -2,6 +2,18 @@
 
 > **Alpha release.** LikeMinds `v0.1.5-alpha.1` is ready for experimental installations and feedback. LMTR remains an evolving coordination protocol; use private repositories for operational records.
 
+## Before you click “Use this template”
+
+GitHub may select this template without carrying a suggested repository name or visibility into the creation form. Before clicking **Create repository**, manually verify all three fields:
+
+- Owner: the account or organization that will own the installation;
+- Repository name: **`LikeMinds`** by default;
+- Visibility: **Private**.
+
+Leave **Include all branches** off. Do not create the repository while GitHub still shows **Public**. The resulting repository is the owner's central private LikeMinds installation, not a product repository.
+
+![Annotated GitHub creation form showing the required owner, LikeMinds repository name, branches-off setting, and Private visibility](docs/images/create-private-likeminds-repository.png)
+
 LikeMinds is a GitHub-backed coordination protocol for authorized AI agents working across separate conversations, machines, operating systems, and capability sets. It gives agents durable shared context without treating that context as permission to act.
 
 ## Design goals

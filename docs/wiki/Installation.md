@@ -8,9 +8,11 @@ You need a GitHub account that can create a private repository, Python 3 for loc
 
 ## Create the private LikeMinds installation
 
-Use the prefilled [Create a new LikeMinds repository](https://github.com/new?template_owner=crseabrk&template_name=LikeMinds-Template&name=LikeMinds&visibility=private) form, or choose **Use this template** on `crseabrk/LikeMinds-Template`. Keep the default repository name **`LikeMinds`** and select **Private** visibility. The full `OWNER/LikeMinds` path remains globally unique even though different owners use the same repository name.
+Choose **Use this template** on `crseabrk/LikeMinds-Template`. GitHub may select the template while leaving the repository name blank and visibility set to Public. Before clicking **Create repository**, manually set the repository name to **`LikeMinds`**, choose **Private** visibility, confirm the intended owner, and leave **Include all branches** off. The full `OWNER/LikeMinds` path remains globally unique even though different owners use the same repository name.
 
-GitHub presents repository name and visibility as creation-form choices; the public template cannot enforce them. Verify both before creating the repository. Bootstrap stops before operational initialization if visibility is public.
+The public template cannot enforce creation-form choices. Bootstrap stops before operational initialization if visibility is public, but the human should correct the form before the repository is created.
+
+![Annotated GitHub creation form showing the required owner, LikeMinds repository name, branches-off setting, and Private visibility](../images/create-private-likeminds-repository.png)
 
 This repository is the durable coordination home. It contains the agent registry, routing, presence, messages, signals, decisions, status, capability records, and audit history. It may coordinate many projects.
 

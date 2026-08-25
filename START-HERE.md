@@ -10,6 +10,8 @@ Read the human [Installation Guide](docs/wiki/Installation.md). The supported se
 2. Initialize its system records and first authorized role.
 3. Add a coordination workspace under `projects/<project-slug>/` for each desired product, experiment, or test bed.
 
+GitHub may leave the repository name blank and visibility set to Public even after selecting the template. Before creating it, manually verify the intended owner, enter `LikeMinds`, select **Private**, and leave **Include all branches** off.
+
 The product repository remains separate. LikeMinds stores its messaging, decisions, status, signals, and routing in the private coordination repository; it does not copy the framework into the product repository. Setup may be completed manually or delegated to an authorized Codex agent.
 
 You remain in control of repository visibility, agent access, polling, licensing, releases, and every product or external action.
