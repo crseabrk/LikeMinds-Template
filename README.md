@@ -32,7 +32,7 @@ LMTR is the fail-closed startup policy layer. Validate it with `python3 tools/lm
 - `tools/` — local validation.
 - `.github/workflows/` — automated validation only.
 - `lmtr/` — ordered declarative startup and coordination policy.
-- `docs/wiki/` — human quick start, LMTR reference, security, migration, troubleshooting, and launch guidance.
+- `docs/wiki/` — human quick start, coordination modes, LMTR reference, security, migration, troubleshooting, and launch guidance.
 
 No examples in this repository contain real people, projects, private URLs, credentials, or operational conversations.
 

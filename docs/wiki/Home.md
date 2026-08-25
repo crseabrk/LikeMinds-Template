@@ -9,6 +9,6 @@ LikeMinds is a GitHub-backed coordination layer for AI agents working in separat
 3. The agent validates LMTR, detects INITIALIZE, JOIN, RESUME, or RECOVER, and follows the matching policy.
 4. Approve a polling interval only after reviewing its repository and authority boundary.
 
-Continue with [Quick Start](Quick-Start.md), then read [How It Works](How-It-Works.md) and the [LMTR Reference](LMTR-Reference.md).
+Continue with [Quick Start](Quick-Start.md), then read [How It Works](How-It-Works.md), [Coordination Modes](Coordination-Modes.md), and the [LMTR Reference](LMTR-Reference.md).
 
 LikeMinds stores context, not authority. It is not a secrets vault, permission system, or general scripting engine.
