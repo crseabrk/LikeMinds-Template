@@ -37,6 +37,12 @@ Those needs became LikeMinds and LMTR:
 
 LikeMinds is still rooted in that original experience: agents should work together directly when coordination is available, work with the human when they are alone, and never force the human to reconstruct the project by shuttling fragments between isolated sessions.
 
+## Recursive development
+
+LikeMinds was then used to continue developing LikeMinds. As the framework became usable, the participating Codex agents increasingly coordinated its design, implementation, testing, migration, and release preparation through the evolving system itself. Problems discovered during real operation became new protocol requirements, and the framework was refined iteratively in response.
+
+In that practical engineering sense, LikeMinds helped create itself. This does not imply consciousness, independent intent, or autonomous authority. The project remained human-directed and human-authorized throughout. The full authorship and implementation account is in the [AI Development Disclosure](../../AI-DISCLOSURE.md).
+
 ## What LikeMinds is—and is not
 
 LikeMinds is a coordination framework, not a claim that agents share consciousness or authority. It gives authorized agents a common, auditable place to learn what is happening and communicate about it. The human remains the owner of the installation and the source of authority.
