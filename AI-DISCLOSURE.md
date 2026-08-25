@@ -20,6 +20,24 @@ As the framework became usable, the participating Codex agents increasingly used
 
 In that limited and practical sense, LikeMinds helped create itself. The phrase does not imply consciousness, independent intent, or autonomous authority. It describes a recursive engineering process in which the developing coordination framework became part of the toolchain used to continue its own development.
 
+## Development-time comparison
+
+Neither project used formal time tracking, and both contained work that predated their public repositories. Total human and agent labor hours therefore cannot be reconstructed from GitHub. The following actual figures are verifiable public-repository calendar windows, not claims about total coding time:
+
+| Project | Verifiable actual window |
+| --- | --- |
+| CMQ | Public repository created 22 August 2026 at 14:45 UTC; version 1.0.0 published at 15:06 UTC, 21 minutes later. Continued fixes and coordination changes were recorded over the following two days. The unusually short creation-to-release interval confirms that implementation work existed before the public repository. |
+| LikeMinds Template | Public repository created 24 August 2026 at 17:30 UTC; alpha.1 published 14 hours 15 minutes later and alpha.2 published 19 hours 38 minutes after repository creation. Earlier private coordination work predated the public template. |
+
+A counterfactual without generative AI cannot be measured, only estimated. Based on the delivered scope—two native CMQ implementations, cross-platform testing and packaging, plus LikeMinds' protocol, schemas, tooling, tests, updater, documentation, CI, migrations, and testbed—the following are broad order-of-magnitude estimates:
+
+| Project | Experienced solo developer without generative AI | At the project owner's stated starting experience |
+| --- | --- | --- |
+| CMQ | Approximately 4–8 full-time weeks | Approximately 3–6 months including Swift, macOS, cross-platform, packaging, and GitHub learning |
+| LikeMinds | Approximately 6–12 full-time weeks | Approximately 4–9 months including protocol design, Python tooling, testing, Git/GitHub, CI, security, and documentation learning |
+
+These ranges are disclosure estimates, not productivity measurements or promises. The projects overlapped, so their calendar estimates should not simply be added. They are included to communicate the scale of acceleration while preserving uncertainty about effort that was never formally logged.
+
 ## Responsibility and authority
 
 Repository context is not authority. Codex agents acted within human-defined scope, and publication or other consequential actions required explicit authorization where applicable. Validation, review, and real-world testing informed acceptance, but responsibility for project direction and release decisions remained with the human project owner.
