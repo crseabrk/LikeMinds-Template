@@ -1,22 +1,30 @@
 # Installation Guide
 
-LikeMinds operational records should normally live in a new **private** GitHub repository. Do not use the public template repository itself for real coordination.
+LikeMinds is an internal coordination system installed in the **private repository of the project being coordinated**. Do not use the public template repository itself, or a separate public copy of it, for real coordination.
 
 ## Before you begin
 
 You need a GitHub account that can create a private repository, Python 3 for local validation, and either permission to edit the repository yourself or an authorized Codex agent with GitHub access.
 
-## Option A: install manually
+## Choose the project repository
 
-### 1. Create the repository
+### Path 1: add LikeMinds to an existing private project
 
-Use GitHub's **Use this template** action on `crseabrk/LikeMinds-Template`. Create a new repository under your account or organization and select **Private** visibility.
+Keep the existing project repository as the authority. Copy the framework-managed files listed in `updates/managed-files.json` into it without overwriting product files or any existing LikeMinds operational records. Then continue with configuration below. An authorized agent may perform this installation after confirming the exact repository, visibility, collisions, and proposed changes.
 
-### 2. Configure installation metadata
+### Path 2: create a new private project with LikeMinds installed
+
+Use GitHub's **Use this template** action on `crseabrk/LikeMinds-Template`. Create the new project repository under your account or organization and select **Private** visibility. This repository is the project repository, not a separate coordination-only copy. Add the project's code and assets alongside the framework after initialization.
+
+Creating a public repository from the template is suitable only for a deliberately sanitized demonstration, not an operational project.
+
+## Manual initialization
+
+### 1. Configure installation metadata
 
 Copy `installation.example.yml` to `installation.yml`. Replace `OWNER/REPOSITORY` with the actual private repository name. Review the routing paths, LMTR manifest, collaboration defaults, update channel, and capability declarations. Do not put tokens or machine secrets in this file.
 
-### 3. Create operational records
+### 2. Create operational records
 
 Copy, without overwriting existing files:
 
@@ -26,11 +34,11 @@ Copy, without overwriting existing files:
 
 Keep records empty until you deliberately initialize roles, routes, and projects. Never copy another installation's CHAT, SIGNALS, cursors, or role registry.
 
-### 4. Register the first role
+### 3. Register the first role
 
 In `system/AGENTS.md`, add one unique stable role for the first authorized agent and record only verified capabilities. Use the [Agent Capabilities](Agent-Capabilities.md) contract to distinguish repository access, latest-SHA writes, local checkout, command execution, Python, and polling. Initialize only that role's cursors. Leave `system/PRESENCE.json` at NOBODY before a session starts.
 
-### 5. Validate
+### 4. Validate
 
 ```sh
 python3 tools/lmtr.py validate
@@ -42,19 +50,19 @@ python3 tools/validate.py
 
 Do not continue if a command fails. Consult [Troubleshooting](Troubleshooting.md) or ask an authorized agent to diagnose the exact error.
 
-### 6. Add the first project
+### 5. Add the project route
 
-Choose a lowercase project slug, create `projects/<slug>/` from `templates/project/`, and add the route to `ROUTING.md`. Record the product repository and purpose in STATUS without copying secrets or internal product data.
+Choose a lowercase project slug, create `projects/<slug>/` from `templates/project/`, and add the route to `ROUTING.md`. Record this repository and the project's purpose in STATUS without copying secrets or unnecessary product data.
 
-### 7. Choose coordination mode
+### 6. Choose coordination mode
 
 Start with [sequential signalling](Coordination-Modes.md). Enable recurring polling only after explicitly approving its repository, role, interval, and authority boundary.
 
-## Option B: use an authorized Codex agent
+## Agent-assisted installation
 
-### 1. Create the repository
+### 1. Select the target
 
-Create a new private repository from `crseabrk/LikeMinds-Template`.
+Choose either an existing private project repository or a new private project repository created from `crseabrk/LikeMinds-Template`. Do not create a separate public coordination repository.
 
 ### 2. Authorize access
 
@@ -62,7 +70,7 @@ Give your Codex agent access through a supported signed-in GitHub connection. Co
 
 ### 3. Give one instruction
 
-> Go to OWNER/REPOSITORY and follow BOOTSTRAP.md completely. Initialize this as a private LikeMinds installation. Do not create recurring polling until you show me the interval, repository, role, and authority boundary and I approve them.
+> Install or initialize LikeMinds inside the private project repository OWNER/REPOSITORY and follow BOOTSTRAP.md completely. Preserve existing product files. Create the project route for PROJECT-SLUG. Do not create recurring polling until you show me the interval, repository, role, and authority boundary and I approve them.
 
 `BOOTSTRAP.md` is written for the agent. It validates LMTR, detects repository state, and follows INITIALIZE, JOIN, RESUME, or RECOVER.
 
