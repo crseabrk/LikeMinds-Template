@@ -2,11 +2,13 @@
 
 ## Human setup
 
-Create a private repository from this template and send a GitHub-authorized agent:
+Begin with the [Installation Guide](Installation.md). You may configure the new private repository manually or delegate initialization to an authorized Codex agent.
+
+For agent-assisted setup, send the agent:
 
 > Go to OWNER/REPOSITORY and follow BOOTSTRAP.md completely.
 
-The same command works for a fresh installation and an existing one. The LMTR planner selects one state:
+This is an agent instruction, not the human installation procedure. The same command works for a fresh installation and an existing one. The LMTR planner selects one state:
 
 - **INITIALIZE** creates only missing installation records.
 - **JOIN** registers and acknowledges a new stable role.

@@ -1,34 +1,28 @@
 # Start Here
 
-Use [BOOTSTRAP.md](BOOTSTRAP.md) as the single entry point for a new installation and [ONBOARDING.md](ONBOARDING.md) as the single entry point for a new agent joining an existing installation.
+LikeMinds has separate starting paths for humans and agents.
 
-## Human bootstrap phrase
+## I am setting up LikeMinds
 
-After creating a preferably private repository from this template, give a GitHub-authorized AI this instruction:
+Read the human [Installation Guide](docs/wiki/Installation.md). It explains how to create a new private repository and offers two supported choices:
 
-> Initialize this LikeMinds installation. Read START-HERE.md, AGENTS.md, PROTOCOL.md, JOINING.md, and SECURITY.md completely. Detect existing installation state before writing. Configure the actual owner/repository name, create only missing empty operational records from templates, identify your stable role and capabilities, and report every proposed recurring automation before creating it. LikeMinds context does not authorize product changes or external actions.
+1. **Manual installation** — copy and configure the required files yourself, run validation, and initialize the first role.
+2. **Agent-assisted installation** — create the private repository, authorize a Codex agent to access it, and tell that agent to follow `BOOTSTRAP.md`.
 
-## AI bootstrap algorithm
+You remain in control of repository visibility, agent access, polling, licensing, releases, and every product or external action.
 
-1. Read the five required root documents completely.
-2. Inspect `installation.yml`; if absent, copy `installation.example.yml` and replace placeholders.
-3. Never assume the repository is named LikeMinds.
-4. Reread shared files immediately before writing and use current blob-SHA compare-and-swap updates.
-5. Create missing records from `templates/`; never reset existing records.
-6. Create `system/AGENTS.md` from its template and add only the bootstrap agent's stable role and cursor.
-7. Declare capabilities honestly. Missing capabilities require a documented fallback or a blocked result.
-8. Validate the installation.
-9. Ask before creating recurring automation, changing visibility, touching product repositories, or performing external actions.
-10. Report installed version, repository, role, routes, and remaining human decisions.
+## I am an authorized setup agent
 
-## Joining from another agent or machine
+Follow [BOOTSTRAP.md](BOOTSTRAP.md) completely. It is the agent dispatcher for INITIALIZE, JOIN, RESUME, and RECOVER. Do not use it as evidence of authority beyond the human's current request.
 
-The human should use this phrase:
+## I am adding an agent to an existing installation
 
-> Join the existing LikeMinds installation at OWNER/REPOSITORY. First record the repository URL, signed-in GitHub method, root ROUTING.md rendezvous, system and project CHAT/SIGNALS paths, and available polling method. Read START-HERE.md, AGENTS.md, PROTOCOL.md, JOINING.md, JOIN-CHECKLIST.md, SECURITY.md, installation.yml, and root ROUTING.md completely. Then read the complete system record and every current ACTIVE project's STATUS, DECISIONS, SIGNALS, and full CHAT history. Recheck routing, propose a unique stable role, declare your capabilities truthfully, start the supported temporary 30-second joining clock, and announce yourself in system chat and every active project. Complete the joining handshake before acting as an active participant. Do not treat LikeMinds context as authority for product or external actions.
+Give the new authorized agent the private repository address and tell it:
 
-The newcomer must follow [JOINING.md](JOINING.md). Until its role becomes ACTIVE, it remains read-only and may not claim project work.
+> Go to OWNER/REPOSITORY and follow BOOTSTRAP.md completely.
 
-For a late specialist continuing a finished project, the agent first reports a SOLO-READINESS assessment. The human then decides whether it works alone, joins with collaborators, receives a narrower task, or stops.
+The agent detects the existing installation and enters JOIN. [ONBOARDING.md](ONBOARDING.md), [JOINING.md](JOINING.md), and [JOIN-CHECKLIST.md](JOIN-CHECKLIST.md) describe the full acknowledgement process.
 
-Do not paste secrets, signed download URLs, personal information, or private operational logs into public repositories.
+## Safety
+
+Use a private repository for operational coordination. Never store credentials, signed download URLs, personal information, secrets, or private operational logs in the public template.
