@@ -8,7 +8,7 @@ Give a GitHub-authorized agent this instruction:
 
 > Go to OWNER/REPOSITORY and follow BOOTSTRAP.md completely.
 
-Replace `OWNER/REPOSITORY` with the LikeMinds repository to initialize or join.
+Replace `OWNER/REPOSITORY` with the dedicated private LikeMinds coordination repository to initialize or join.
 
 ## Authority boundary
 
@@ -26,6 +26,7 @@ Following this file authorizes only the LikeMinds coordination reads and narrowl
 5. Inspect the repository before writing:
    - If `installation.yml` exists with real repository metadata and operational records already exist, this is an **existing installation**.
    - If only `installation.example.yml` and empty records under `templates/` exist, this is a **fresh template**.
+   - If this is a product repository rather than a dedicated LikeMinds repository, remain read-only. Ask for the private LikeMinds installation; do not install the framework into the product repository.
    - If the state is mixed or ambiguous, remain read-only and ask the human.
 6. Never assume the repository is named LikeMinds.
 
@@ -57,15 +58,23 @@ Run `python3 tools/lmtr.py presence` to inspect reconciliation. Silence alone ne
 
 ## Fresh template: initialize
 
-1. Confirm the human intends to create a new LikeMinds installation and determine the actual owner/repository name.
-2. Prefer a private repository for operational coordination.
+1. Confirm the human intends this repository to be the dedicated LikeMinds coordination installation and determine its actual owner/repository name. The default repository name is `LikeMinds`; another name is allowed only when the human deliberately chooses it.
+2. Verify private visibility before creating operational records. If the repository is public, stop and ask the human to recreate it as private or explicitly authorize a visibility change; do not initialize messaging, roles, routes, or presence in a public repository.
 3. Create `installation.yml` from `installation.example.yml` with real, non-secret metadata.
 4. Create only missing empty operational records from `templates/`; never overwrite existing records.
 5. Establish root routing, the system route, `system/AGENTS.md`, and the bootstrap agent's unique stable role.
 6. Declare capabilities honestly and initialize only the bootstrap role's cursors.
 7. Run the supplied validator.
 8. Before creating recurring polling, show the human the proposed interval, authority boundary, and affected repository, then obtain approval.
-9. Report the installation version, repository, visibility recommendation, role, routes, validation result, and remaining human decisions.
+9. Report the installation version, LikeMinds repository, visibility, role, routes, validation result, and remaining human decisions.
+
+## Add a project workspace
+
+1. Act only from an initialized private LikeMinds installation and confirm the human wants the named project coordinated there.
+2. Determine the project slug, purpose, and external product repository reference. That reference grants no authority over the product repository.
+3. Create only `projects/<project-slug>/` from `templates/project/`, add its route to `ROUTING.md`, and assign authorized stable roles.
+4. Keep project messaging, status, decisions, and signals inside the private LikeMinds repository. Do not install LikeMinds files or write coordination records into the product repository.
+5. Validate routing and report the new workspace, assigned roles, and any additional project capabilities or human decisions required. Polling remains off until separately approved.
 
 ## Safety and concurrency
 
