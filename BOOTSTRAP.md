@@ -8,7 +8,7 @@ Give a GitHub-authorized agent this instruction:
 
 > Go to OWNER/REPOSITORY and follow BOOTSTRAP.md completely.
 
-Replace `OWNER/REPOSITORY` with the private project repository in which LikeMinds is installed or will be installed.
+Replace `OWNER/REPOSITORY` with the dedicated private LikeMinds coordination repository to initialize or join.
 
 ## Authority boundary
 
@@ -26,7 +26,7 @@ Following this file authorizes only the LikeMinds coordination reads and narrowl
 5. Inspect the repository before writing:
    - If `installation.yml` exists with real repository metadata and operational records already exist, this is an **existing installation**.
    - If only `installation.example.yml` and empty records under `templates/` exist, this is a **fresh template**.
-   - If product files exist but LikeMinds framework files are absent, this is an **existing project awaiting installation**. Inventory path collisions and obtain the human's approval for the exact installation changes before adding framework files; never overwrite product files.
+   - If this is a product repository rather than a dedicated LikeMinds repository, remain read-only. Ask for the private LikeMinds installation; do not install the framework into the product repository.
    - If the state is mixed or ambiguous, remain read-only and ask the human.
 6. Never assume the repository is named LikeMinds.
 
@@ -58,7 +58,7 @@ Run `python3 tools/lmtr.py presence` to inspect reconciliation. Silence alone ne
 
 ## Fresh template: initialize
 
-1. Confirm the human intends this repository to be the new project repository and determine its actual owner/repository name and project slug.
+1. Confirm the human intends this repository to be the dedicated LikeMinds coordination installation and determine its actual owner/repository name.
 2. Require private visibility for operational coordination unless the human explicitly limits the repository to sanitized demonstration data.
 3. Create `installation.yml` from `installation.example.yml` with real, non-secret metadata.
 4. Create only missing empty operational records from `templates/`; never overwrite existing records.
@@ -66,17 +66,15 @@ Run `python3 tools/lmtr.py presence` to inspect reconciliation. Silence alone ne
 6. Declare capabilities honestly and initialize only the bootstrap role's cursors.
 7. Run the supplied validator.
 8. Before creating recurring polling, show the human the proposed interval, authority boundary, and affected repository, then obtain approval.
-9. Report the installation version, project repository, visibility, project route, role, validation result, and remaining human decisions.
+9. Report the installation version, LikeMinds repository, visibility, role, routes, validation result, and remaining human decisions.
 
-## Existing project: install
+## Add a project workspace
 
-1. Confirm the exact private project repository and project slug.
-2. Inventory existing paths against `updates/managed-files.json`; stop on collisions or ambiguity and show the human the affected paths.
-3. Add only missing framework-managed files. Never overwrite product files, existing operational records, repository policy, or CI without explicit approval.
-4. Create `installation.yml`, root/system records, and `projects/<project-slug>/` from the empty templates.
-5. Register the bootstrap role with truthful capabilities and initialize only its cursors.
-6. Run LMTR, conformance, clean-install, and structural validation from an executable checkout.
-7. Report every added or modified path and any project-specific CI or namespace conflict. Polling remains off until separately approved.
+1. Act only from an initialized private LikeMinds installation and confirm the human wants the named project coordinated there.
+2. Determine the project slug, purpose, and external product repository reference. That reference grants no authority over the product repository.
+3. Create only `projects/<project-slug>/` from `templates/project/`, add its route to `ROUTING.md`, and assign authorized stable roles.
+4. Keep project messaging, status, decisions, and signals inside the private LikeMinds repository. Do not install LikeMinds files or write coordination records into the product repository.
+5. Validate routing and report the new workspace, assigned roles, and any additional project capabilities or human decisions required. Polling remains off until separately approved.
 
 ## Safety and concurrency
 
