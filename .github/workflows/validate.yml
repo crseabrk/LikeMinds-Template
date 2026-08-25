@@ -20,3 +20,5 @@ jobs:
         run: python tools/validate.py
       - name: Validate LMTR conformance
         run: python tests/test_lmtr.py
+      - name: Validate managed updater
+        run: python tests/test_update.py

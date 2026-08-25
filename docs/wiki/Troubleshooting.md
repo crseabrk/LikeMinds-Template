@@ -16,3 +16,9 @@ The agent should report connector-only access, state whether any command was att
 - **LMTR-E012:** protected safety rule is missing.
 
 If `plan` returns RECOVER, inspect installation metadata, root routing, and `system/AGENTS.md`. Do not force INITIALIZE or reuse another role's cursor.
+
+## Update conflicts
+
+- `CONFLICT-UNTRACKED` means an existing installation has not recorded a baseline for that managed file. Run `adopt` once and review the resulting state before applying.
+- `CONFLICT-LOCAL-MODIFICATION` means the installed managed file changed after its recorded version. Preserve it, compare with upstream, and resolve deliberately; the updater will not overwrite it.
+- A post-update validator failure automatically restores copied files from `.likeminds/backups/`. Inspect the exact command failure before retrying.

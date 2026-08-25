@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.2-draft
+
+- Add explicit managed-file updates for independent template installations.
+- Protect operational records and installation policy from framework updates.
+- Add adoption, planning, conflict detection, backups, validation, rollback, and installed-source tracking.
+- Document a human-approved connector-only update path with static-validation limits.
+
 ## Unreleased
 
 - Added a formal multi-agent joining handshake.

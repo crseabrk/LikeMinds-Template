@@ -22,6 +22,7 @@ REQUIRED = [
     "docs/wiki/Installation.md",
     "docs/wiki/Agent-Capabilities.md",
     "docs/wiki/Capability-Audit.md", "templates/system/CAPABILITY-AUDIT.md",
+    "updates/managed-files.json", "tools/update.py", "tests/test_update.py",
     "docs/wiki/Coordination-Modes.md",
     "docs/wiki/Security-and-Authority.md", "docs/wiki/Launch-Checklist.md",
     "tests/test_lmtr.py",
