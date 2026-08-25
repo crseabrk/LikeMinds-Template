@@ -4,10 +4,12 @@ LikeMinds has separate starting paths for humans and agents.
 
 ## I am setting up LikeMinds
 
-Read the human [Installation Guide](docs/wiki/Installation.md). It explains how to create a new private repository and offers two supported choices:
+Read the human [Installation Guide](docs/wiki/Installation.md). Choose where the actual project will live:
 
-1. **Manual installation** — copy and configure the required files yourself, run validation, and initialize the first role.
-2. **Agent-assisted installation** — create the private repository, authorize a Codex agent to access it, and tell that agent to follow `BOOTSTRAP.md`.
+1. **Existing private project** — install LikeMinds into that repository without overwriting product files.
+2. **New private project** — create the project repository from this template, then initialize both the project route and its internal LikeMinds records.
+
+Either path may be completed manually or delegated to an authorized Codex agent. LikeMinds is part of the project repository; creating a separate public copy of the template is not an installation.
 
 You remain in control of repository visibility, agent access, polling, licensing, releases, and every product or external action.
 
