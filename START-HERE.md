@@ -6,7 +6,7 @@ LikeMinds has separate starting paths for humans and agents.
 
 Read the human [Installation Guide](docs/wiki/Installation.md). The supported setup is:
 
-1. Create one dedicated **private LikeMinds repository** from this public template.
+1. Create one dedicated repository named **`LikeMinds`** from this public template and select **Private** visibility.
 2. Initialize its system records and first authorized role.
 3. Add a coordination workspace under `projects/<project-slug>/` for each desired product, experiment, or test bed.
 
