@@ -1,6 +1,6 @@
 {
   "format": "likeminds-managed-files-1",
-  "version": "0.1.2-draft",
+  "version": "0.1.3-draft",
   "protected_paths": [
     "installation.yml",
     "ROUTING.md",
@@ -72,6 +72,7 @@
     "tests/test_update.py",
     "tools/lmtr.py",
     "tools/update.py",
+    "tools/validate.py",
     "updates/managed-files.json"
   ]
 }

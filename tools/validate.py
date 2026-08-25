@@ -63,6 +63,19 @@ def validate_required(errors):
             errors.append(f"missing required file: {rel}")
 
 
+def validate_update_manifest(errors):
+    try:
+        import json
+        manifest = json.loads((ROOT / "updates/managed-files.json").read_text(encoding="utf-8"))
+        managed = set(manifest["files"])
+    except Exception as exc:
+        errors.append(f"managed update manifest unreadable: {exc}")
+        return
+    missing = sorted(set(REQUIRED) - managed)
+    for rel in missing:
+        errors.append(f"required framework file is not managed: {rel}")
+
+
 def validate_core_phrases(errors):
     corpus = "\n".join((ROOT / p).read_text(encoding="utf-8").lower()
                         for p in ("AGENTS.md", "PROTOCOL.md", "SECURITY.md"))
@@ -114,6 +127,7 @@ def validate_public_safety(errors):
 def main():
     errors = []
     validate_required(errors)
+    validate_update_manifest(errors)
     validate_core_phrases(errors)
     validate_joining_protocol(errors)
     validate_ids(errors)

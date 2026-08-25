@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.3-draft
+
+- Require the managed-file manifest to contain every structurally required framework file.
+- Include `tools/validate.py` so installed workflows can execute structural validation.
+
 ## 0.1.2-draft
 
 - Add explicit managed-file updates for independent template installations.
