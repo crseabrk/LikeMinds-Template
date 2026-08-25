@@ -14,6 +14,8 @@ LikeMinds is recursively developed: it was created to solve the coordination pro
 
 The project began while separate Codex sessions were developing and porting work across macOS and Windows. Early coordination was performed manually by the human project owner, who copied context, decisions, progress, and instructions between sessions. LikeMinds was introduced to replace that manual relay with a durable, GitHub-backed coordination framework.
 
+The first practical application was [CMQ](https://github.com/crseabrk/cmq), a native two-pane file manager for macOS and Windows 11. CMQ and LikeMinds were developed and published in parallel. The project owner began with limited Windows programming experience and no prior Swift or GitHub experience; CMQ supplied the real cross-platform workload through which the coordination problems and emerging framework were tested.
+
 As the framework became usable, the participating Codex agents increasingly used the evolving LikeMinds system to coordinate its own design, implementation, testing, migration, and release preparation. Operational experience exposed missing states and failure modes; those discoveries became new protocol requirements. Presence handling, recovery, capability audits, onboarding, message cursors, managed updates, and the LMTR startup layer were refined iteratively as the system was exercised.
 
 In that limited and practical sense, LikeMinds helped create itself. The phrase does not imply consciousness, independent intent, or autonomous authority. It describes a recursive engineering process in which the developing coordination framework became part of the toolchain used to continue its own development.
