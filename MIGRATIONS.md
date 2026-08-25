@@ -16,6 +16,8 @@ python3 tools/update.py apply --source /path/to/LikeMinds-Template --source-revi
 
 `adopt` is a one-time baseline for an existing unmanaged installation. Review and commit its state before applying an update. `plan` reports ADD, UPDATE, UNCHANGED, and blocking conflicts. `apply` refuses locally modified managed files, backs up replaced files, updates atomically, runs LMTR validation and conformance tests, and records the installed upstream revision.
 
+If preserved operational history already contains duplicate message IDs, record only the known path and IDs in `.likeminds/validation-baseline.json` using format `likeminds-validation-baseline-1`. This installation-specific exception preserves history while allowing every unlisted future duplicate to fail validation. Never add an ID merely to make a new validation failure disappear; investigate it first.
+
 Never use the template checkout itself as the destination. Pull or fetch the source separately and pin a reviewed commit SHA.
 
 ## Connector-only update workflow

@@ -51,6 +51,7 @@ ALLOWED_SIGNAL_STATES = {"READY", "CLAIMED", "DONE", "BLOCKED", "CANCELLED"}
 ALLOWED_MEMBER_STATES = {"PROPOSED", "ACKNOWLEDGING", "ACTIVE", "PAUSED", "RETIRED", "BLOCKED"}
 MESSAGE_HEADER = re.compile(r"^### ([A-Z0-9-]+) — ", re.MULTILINE)
 SIGNAL_HEADER = re.compile(r"^### ([A-Z0-9-]+)$", re.MULTILINE)
+BASELINE = ROOT / ".likeminds" / "validation-baseline.json"
 
 
 def markdown_files():
@@ -99,12 +100,25 @@ def validate_joining_protocol(errors):
 
 
 def validate_ids(errors):
+    accepted = {}
+    if BASELINE.exists():
+        try:
+            import json
+            data = json.loads(BASELINE.read_text(encoding="utf-8"))
+            if data.get("format") != "likeminds-validation-baseline-1" or not isinstance(data.get("accepted_duplicate_message_ids"), dict):
+                raise ValueError("unsupported format")
+            accepted = {path: set(ids) for path, ids in data["accepted_duplicate_message_ids"].items()}
+        except Exception as exc:
+            errors.append(f"validation baseline unreadable: {exc}")
+            return
     for path in markdown_files():
         text = path.read_text(encoding="utf-8")
         ids = MESSAGE_HEADER.findall(text)
         duplicates = sorted({item for item in ids if ids.count(item) > 1})
         for item in duplicates:
-            errors.append(f"{path.relative_to(ROOT)}: duplicate message id {item}")
+            relative = path.relative_to(ROOT).as_posix()
+            if item not in accepted.get(relative, set()):
+                errors.append(f"{relative}: duplicate message id {item}")
 
 
 def validate_signal_states(errors):

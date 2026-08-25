@@ -44,6 +44,21 @@ def main() -> None:
         run(destination, "apply", "--source", str(source), "--source-revision", "update-1")
         assert (destination / "VERSION").read_text(encoding="utf-8") == "test-update\n"
 
+        history = destination / "projects" / "test" / "CHAT.md"
+        history.parent.mkdir(parents=True)
+        history.write_text("### TEST-001 — first\n\n### TEST-001 — preserved duplicate\n", encoding="utf-8")
+        failed = subprocess.run([sys.executable, "tools/validate.py"], cwd=destination, text=True, stdout=subprocess.PIPE)
+        assert failed.returncode == 1 and "duplicate message id TEST-001" in failed.stdout
+        baseline = {
+            "format": "likeminds-validation-baseline-1",
+            "accepted_duplicate_message_ids": {"projects/test/CHAT.md": ["TEST-001"]},
+        }
+        (destination / ".likeminds" / "validation-baseline.json").write_text(
+            json.dumps(baseline, indent=2) + "\n", encoding="utf-8"
+        )
+        passed = subprocess.run([sys.executable, "tools/validate.py"], cwd=destination)
+        assert passed.returncode == 0
+
         (destination / "AGENTS.md").write_text(
             (destination / "AGENTS.md").read_text(encoding="utf-8") + "\nlocal change\n",
             encoding="utf-8",

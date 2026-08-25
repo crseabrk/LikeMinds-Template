@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.4-draft
+
+- Allow installations to acknowledge specific preserved historical duplicate message IDs without weakening checks for new duplicates.
+- Protect installation-specific `.likeminds/` metadata from upstream managed files.
+
 ## 0.1.3-draft
 
 - Require the managed-file manifest to contain every structurally required framework file.
