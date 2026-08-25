@@ -8,7 +8,9 @@ You need a GitHub account that can create a private repository, Python 3 for loc
 
 ## Create the private LikeMinds installation
 
-Use GitHub's **Use this template** action on `crseabrk/LikeMinds-Template`. Create a repository dedicated to LikeMinds under your account or organization and select **Private** visibility.
+Use the prefilled [Create a new LikeMinds repository](https://github.com/new?template_owner=crseabrk&template_name=LikeMinds-Template&name=LikeMinds&visibility=private) form, or choose **Use this template** on `crseabrk/LikeMinds-Template`. Keep the default repository name **`LikeMinds`** and select **Private** visibility. The full `OWNER/LikeMinds` path remains globally unique even though different owners use the same repository name.
+
+GitHub presents repository name and visibility as creation-form choices; the public template cannot enforce them. Verify both before creating the repository. Bootstrap stops before operational initialization if visibility is public.
 
 This repository is the durable coordination home. It contains the agent registry, routing, presence, messages, signals, decisions, status, capability records, and audit history. It may coordinate many projects.
 
@@ -58,7 +60,7 @@ Start with [sequential signalling](Coordination-Modes.md). Enable recurring poll
 
 ### 1. Create the private coordination repository
 
-Create one dedicated private repository from `crseabrk/LikeMinds-Template`. This is the LikeMinds installation, not the product repository.
+Create one dedicated private repository named `LikeMinds` from `crseabrk/LikeMinds-Template`. This is the LikeMinds installation, not the product repository.
 
 ### 2. Authorize access
 
