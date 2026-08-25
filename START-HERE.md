@@ -4,12 +4,13 @@ LikeMinds has separate starting paths for humans and agents.
 
 ## I am setting up LikeMinds
 
-Read the human [Installation Guide](docs/wiki/Installation.md). Choose where the actual project will live:
+Read the human [Installation Guide](docs/wiki/Installation.md). The supported setup is:
 
-1. **Existing private project** — install LikeMinds into that repository without overwriting product files.
-2. **New private project** — create the project repository from this template, then initialize both the project route and its internal LikeMinds records.
+1. Create one dedicated **private LikeMinds repository** from this public template.
+2. Initialize its system records and first authorized role.
+3. Add a coordination workspace under `projects/<project-slug>/` for each desired product, experiment, or test bed.
 
-Either path may be completed manually or delegated to an authorized Codex agent. LikeMinds is part of the project repository; creating a separate public copy of the template is not an installation.
+The product repository remains separate. LikeMinds stores its messaging, decisions, status, signals, and routing in the private coordination repository; it does not copy the framework into the product repository. Setup may be completed manually or delegated to an authorized Codex agent.
 
 You remain in control of repository visibility, agent access, polling, licensing, releases, and every product or external action.
 
