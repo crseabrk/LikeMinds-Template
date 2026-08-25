@@ -2,7 +2,9 @@
 
 An authorized agent performs a capability audit whenever the human asks, during onboarding when requested, or when a material capability change makes the existing profile unreliable. The audit measures task readiness, not intelligence or general quality.
 
-Every claim must be `VERIFIED`, `UNVERIFIED`, or `UNAVAILABLE`. Cite non-secret evidence such as a successful command, connector result, repository state, or exact error. Never infer a capability from the platform name or from access to a different repository.
+Every claim must be `VERIFIED`, `UNVERIFIED`, or `UNAVAILABLE`. Cite non-secret evidence such as a successful command, connector result, correct repository state, deliberately required non-action, or exact error. Never infer a capability from the platform name or from access to a different repository.
+
+Score the capability needed for the current operating mode, not activity for its own sake. In human-directed solo work with coordination polling off, preserving NOBODY and creating no lease is positive evidence. Do not deduct points or create a session merely to demonstrate presence handling. Lease creation and renewal are required only for an explicitly active participating session under the approved coordination mode.
 
 ## Section 1: Basic LMTR readiness
 
@@ -13,7 +15,7 @@ Score each item using its listed maximum. Award full points only for current ver
 | Identify and read the authoritative repository and complete records | 15 |
 | Discover routing and interpret CHAT, SIGNALS, STATUS, and DECISIONS | 10 |
 | Perform latest-blob-SHA writes without overwriting concurrent work | 15 |
-| Update only the agent's own cursors and presence lease | 10 |
+| Update only the agent's own cursors and preserve the correct presence state for the approved mode | 10 |
 | Preserve append-only history and detect unsafe data | 10 |
 | Distinguish identity, capability, route assignment, and human authority | 10 |
 | Obtain an executable checkout when execution is required | 10 |

@@ -13,7 +13,7 @@ Evidence freshness: concise scope and timestamp
 | Authoritative repository and complete reads | UNVERIFIED | — | 0 | 15 |
 | Routing and record interpretation | UNVERIFIED | — | 0 | 10 |
 | Latest-blob-SHA writes | UNVERIFIED | — | 0 | 15 |
-| Own cursor and presence updates | UNVERIFIED | — | 0 | 10 |
+| Own cursor updates and correct presence state | UNVERIFIED | Include required non-action when NOBODY is correct | 0 | 10 |
 | Append-only and data safety | UNVERIFIED | — | 0 | 10 |
 | Capability and authority separation | UNVERIFIED | — | 0 | 10 |
 | Executable checkout | UNVERIFIED | — | 0 | 10 |

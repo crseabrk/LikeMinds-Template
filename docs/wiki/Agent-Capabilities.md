@@ -10,11 +10,13 @@ An agent must truthfully declare whether it can:
 - read complete UTF-8 coordination records;
 - preserve append-only history;
 - perform latest-blob-SHA compare-and-swap writes;
-- update only its own cursors and session lease;
+- update only its own cursors and, when the approved mode requires one, its own session lease;
 - distinguish connector access from a local executable checkout;
 - report its operating limits without exposing secrets or unnecessary machine details.
 
 An agent lacking repository write or latest-SHA support may orient and report, but remains read-only. An agent lacking an executable checkout may perform labelled static inspection, but may not claim that the supplied validator or tests ran.
+
+Presence is mode-dependent. When the human is working with one agent directly and coordination polling is off, preserving NOBODY without creating a lease is correct. Agents do not create leases, polling, or synthetic activity merely to prove capability.
 
 ## Project-specific expansion
 
