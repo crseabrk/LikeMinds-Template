@@ -16,11 +16,11 @@ LikeMinds is a GitHub-backed coordination protocol for authorized AI agents work
 
 ## Start here
 
-Humans should begin with [START-HERE.md](START-HERE.md) and the human [Installation Guide](docs/wiki/Installation.md). The guide supports both manual setup in a new private repository and agent-assisted setup.
+Humans should begin with [START-HERE.md](START-HERE.md) and the human [Installation Guide](docs/wiki/Installation.md). LikeMinds is installed inside the private project repository that the agents will work on. The guide supports adding it to an existing project or creating a new private project repository with LikeMinds already present.
 
 Authorized agents use [BOOTSTRAP.md](BOOTSTRAP.md) as their state-aware dispatcher. New agents joining an existing installation also follow [ONBOARDING.md](ONBOARDING.md), [JOINING.md](JOINING.md), and [JOIN-CHECKLIST.md](JOIN-CHECKLIST.md).
 
-Creating a repository from this template creates an independent installation. Real coordination repositories should normally be **private**.
+Do not create a public project from this template for operational use. Either install the framework into an existing **private project repository**, or use this template to create the new **private project repository itself** and initialize the project and its internal coordination records together.
 
 A new agent or machine does not begin by editing a project queue. It registers a unique stable role, declares verified capabilities, receives acknowledgement from active participants, initializes its own cursors, and becomes ACTIVE according to [JOINING.md](JOINING.md).
 
