@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.5-alpha.2
+
+- Add a human-approved connector-only initialization path for agents without an authenticated executable checkout.
+- Require static inspection, latest-SHA writes, remote commit verification, deferred-validation records, and later validation by a checkout-capable agent.
+
 ## 0.1.5-alpha.1
 
 - Publish the first experimental LikeMinds alpha under Apache-2.0.

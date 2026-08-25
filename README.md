@@ -1,6 +1,6 @@
 # LikeMinds Template
 
-> **Alpha release.** LikeMinds `v0.1.5-alpha.1` is ready for experimental installations and feedback. LMTR remains an evolving coordination protocol; use private repositories for operational records.
+> **Alpha release.** LikeMinds `v0.1.5-alpha.2` is ready for experimental installations and feedback. LMTR remains an evolving coordination protocol; use private repositories for operational records.
 
 ## Before you click “Use this template”
 

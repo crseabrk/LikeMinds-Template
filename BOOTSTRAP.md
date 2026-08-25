@@ -68,6 +68,23 @@ Run `python3 tools/lmtr.py presence` to inspect reconciliation. Silence alone ne
 8. Before creating recurring polling, show the human the proposed interval, authority boundary, and affected repository, then obtain approval.
 9. Report the installation version, LikeMinds repository, visibility, role, routes, validation result, and remaining human decisions.
 
+### Connector-only initialization
+
+An agent without an authenticated executable checkout may initialize a fresh template only after the human explicitly approves **connector-only initialization** for the exact private repository. That approval is a bounded mitigation, not evidence that runtime validation succeeded.
+
+The agent must:
+
+1. complete the capability audit and apply the no-executable-checkout score cap;
+2. verify the repository identity, private visibility, default branch, latest commit, and fresh-template state through the connector;
+3. perform and label a static inspection of every file needed for initialization;
+4. create only the missing files listed in the normal initialization procedure, using latest-blob-SHA semantics for every existing file;
+5. preserve template history and all pre-existing content, and use one reviewable commit when the connector supports it;
+6. reread every created or changed remote file and verify the resulting commit;
+7. record executable LMTR validation and tests as **DEFERRED**, with the missing checkout as the limiting factor and an executable-checkout validation as the mitigation; and
+8. stop if repository identity, visibility, source state, a latest SHA, or any concurrent change becomes ambiguous.
+
+Connector-only initialization may establish coordination records. It may not claim that `tools/lmtr.py`, `tests/test_lmtr.py`, or `tools/validate.py` ran. The first checkout-capable authorized agent must run the full validation commands and append the outcome to the capability and installation audit records before the installation is described as fully validated.
+
 ## Add a project workspace
 
 1. Act only from an initialized private LikeMinds installation and confirm the human wants the named project coordinated there.

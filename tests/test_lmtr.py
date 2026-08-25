@@ -32,9 +32,12 @@ def main() -> None:
     bootstrap = (ROOT / "BOOTSTRAP.md").read_text(encoding="utf-8")
     for safeguard in (
         "Connector-only access",
+        "Connector-only initialization",
         "static inspection",
         "remain read-only",
         "if no command was attempted, say so",
+        "validation and tests as **DEFERRED**",
+        "first checkout-capable authorized agent",
     ):
         assert safeguard in bootstrap, safeguard
 

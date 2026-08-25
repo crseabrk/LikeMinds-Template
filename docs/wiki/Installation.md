@@ -80,6 +80,14 @@ The agent should report the repository and visibility, installed version, valida
 
 Review these before authorizing polling, product work, publication, access changes, or external communication.
 
+### Connector-only agents
+
+Some Codex GitHub connections can read and write repository files but do not provide an authenticated local checkout. The agent should detect this during its capability audit and report the exact limitation before changing anything.
+
+If obtaining a checkout is impractical, the human may explicitly approve connector-only initialization for the exact private repository. The agent then follows the bounded procedure in [`BOOTSTRAP.md`](../../BOOTSTRAP.md): static inspection, latest-SHA writes, remote rereads, commit verification, and a recorded **DEFERRED** result for every executable validator or test. This is a supported assisted-installation mode, but it is not equivalent to runtime validation.
+
+When an authorized checkout-capable agent becomes available, ask it to run the five validation commands from the manual procedure and append the results to the installation and capability audit records. Until then, describe the installation as **initialized, validation deferred**.
+
 ## Adding another agent later
 
 Give the new authorized agent the private repository address and tell it to follow `BOOTSTRAP.md`. Existing installation state selects JOIN. The newcomer remains read-only until acknowledgements activate its unique role.
