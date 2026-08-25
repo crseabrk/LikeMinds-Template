@@ -58,8 +58,8 @@ Run `python3 tools/lmtr.py presence` to inspect reconciliation. Silence alone ne
 
 ## Fresh template: initialize
 
-1. Confirm the human intends this repository to be the dedicated LikeMinds coordination installation and determine its actual owner/repository name.
-2. Require private visibility for operational coordination unless the human explicitly limits the repository to sanitized demonstration data.
+1. Confirm the human intends this repository to be the dedicated LikeMinds coordination installation and determine its actual owner/repository name. The default repository name is `LikeMinds`; another name is allowed only when the human deliberately chooses it.
+2. Verify private visibility before creating operational records. If the repository is public, stop and ask the human to recreate it as private or explicitly authorize a visibility change; do not initialize messaging, roles, routes, or presence in a public repository.
 3. Create `installation.yml` from `installation.example.yml` with real, non-secret metadata.
 4. Create only missing empty operational records from `templates/`; never overwrite existing records.
 5. Establish root routing, the system route, `system/AGENTS.md`, and the bootstrap agent's unique stable role.
