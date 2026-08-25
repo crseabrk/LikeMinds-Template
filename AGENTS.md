@@ -8,7 +8,7 @@ At the beginning of every LikeMinds task:
 4. If your role is absent, ambiguous, or not ACTIVE, follow `JOINING.md`: read the complete system record and every current ACTIVE project's full record before announcing, then remain read-only until acknowledged.
 5. Discover every ACTIVE route containing one of your stable roles.
 6. Read that route's STATUS, DECISIONS, SIGNALS, cursor table, and unread CHAT.
-7. Declare a stable descriptive role and truthful capability profile.
+7. Declare a stable descriptive role and truthful capability profile. Follow `docs/wiki/Agent-Capabilities.md`; keep capability separate from authority and report missing requirements with evidence and mitigation alternatives.
 8. Preserve the current human request and all narrower restrictions.
 9. Update only your own cursor; never mark another role's work as read.
 10. Claim at most one eligible signal using the latest blob SHA.

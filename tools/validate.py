@@ -20,6 +20,7 @@ REQUIRED = [
     "lmtr/manifest.json", "tools/lmtr.py", "docs/wiki/Home.md",
     "docs/wiki/Quick-Start.md", "docs/wiki/LMTR-Reference.md",
     "docs/wiki/Installation.md",
+    "docs/wiki/Agent-Capabilities.md",
     "docs/wiki/Coordination-Modes.md",
     "docs/wiki/Security-and-Authority.md", "docs/wiki/Launch-Checklist.md",
     "tests/test_lmtr.py",

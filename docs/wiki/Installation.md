@@ -28,7 +28,7 @@ Keep records empty until you deliberately initialize roles, routes, and projects
 
 ### 4. Register the first role
 
-In `system/AGENTS.md`, add one unique stable role for the first authorized agent and record only verified capabilities. Initialize only that role's cursors. Leave `system/PRESENCE.json` at NOBODY before a session starts.
+In `system/AGENTS.md`, add one unique stable role for the first authorized agent and record only verified capabilities. Use the [Agent Capabilities](Agent-Capabilities.md) contract to distinguish repository access, latest-SHA writes, local checkout, command execution, Python, and polling. Initialize only that role's cursors. Leave `system/PRESENCE.json` at NOBODY before a session starts.
 
 ### 5. Validate
 

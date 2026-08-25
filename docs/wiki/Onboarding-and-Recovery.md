@@ -4,6 +4,8 @@ A new conversation, machine, or disconnected task is a new agent instance unless
 
 JOIN requires complete orientation, a unique stable role, truthful capabilities, acknowledgements from active participants, and initialization of only the new role's cursors. A joining role remains read-only until ACTIVE.
 
+The coordination minimum and route-specific expansion rules are defined in [Agent Capabilities](Agent-Capabilities.md). A missing capability blocks only the affected operation. The agent reports the gap, evidence, safe remaining scope, mitigation alternatives, and required human decision instead of silently substituting a weaker procedure.
+
 RECOVER is selected when operational state is partial, contradictory, or ambiguous. Recovery verifies required documents, rediscovers routing, compares the role's cursors, and inspects stale claims. It blocks rather than guessing.
 
 During an active join, participants may temporarily shorten their own polling clocks. No agent changes another agent's automation.
