@@ -1,0 +1,16 @@
+procedure JOIN
+  complete orientation require
+  stable-role propose
+  capabilities declare
+  ACTIVE participants acknowledge
+  own-role ACTIVE require
+  own-cursors initialize
+end
+
+procedure INITIALIZE
+  fresh-template state require
+  installation.yml create
+  missing records create
+  bootstrap-role ACTIVE record
+  validator pass require
+end

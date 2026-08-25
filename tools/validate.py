@@ -12,10 +12,15 @@ REQUIRED = [
     "templates/system/STATUS.md", "templates/system/DECISIONS.md",
     "templates/system/AGENTS.md", "templates/system/CHAT.md",
     "templates/system/SIGNALS.md", "templates/project/STATUS.md",
+    "templates/system/PRESENCE.json", "schemas/presence.schema.json",
     "templates/project/DECISIONS.md", "templates/project/CHAT.md",
     "templates/project/SIGNALS.md", "extensions/TEMPLATE/manifest.yml",
     "extensions/TEMPLATE/EXTENSION.md", "extensions/TEMPLATE/INSTALL.md",
     "extensions/TEMPLATE/UNINSTALL.md",
+    "lmtr/manifest.json", "tools/lmtr.py", "docs/wiki/Home.md",
+    "docs/wiki/Quick-Start.md", "docs/wiki/LMTR-Reference.md",
+    "docs/wiki/Security-and-Authority.md", "docs/wiki/Launch-Checklist.md",
+    "tests/test_lmtr.py",
 ]
 PROTECTED_PHRASES = [
     "context, not authority",
@@ -109,6 +114,11 @@ def main():
     validate_ids(errors)
     validate_signal_states(errors)
     validate_public_safety(errors)
+    try:
+        from lmtr import validate as validate_lmtr
+        validate_lmtr()
+    except Exception as exc:
+        errors.append(f"LMTR validation failed: {exc}")
     if errors:
         print("LikeMinds validation failed:")
         for error in errors:

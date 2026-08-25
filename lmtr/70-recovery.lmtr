@@ -1,0 +1,12 @@
+procedure RECOVER
+  repository state inspect
+  required documents verify
+  routing rediscover
+  presence leases read
+  expired leases stale mark
+  unknown presence block
+  collaboration-state recompute
+  own-cursors compare
+  stale-claims inspect
+  ambiguity block
+end

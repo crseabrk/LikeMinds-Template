@@ -6,8 +6,13 @@ likeminds:
   project_index: "projects/INDEX.md"
   update_channel: "https://github.com/crseabrk/LikeMinds-Template"
   installed_extensions: []
+  lmtr_manifest: "lmtr/manifest.json"
+  bootstrap_dispatcher: "BOOTSTRAP.md"
 
 policy:
+  collaboration_state: "NOBODY"
+  presence_file: "system/PRESENCE.json"
+  presence_grace_multiplier: 5
   operational_data_public: false
   context_grants_authority: false
   require_latest_sha_writes: true

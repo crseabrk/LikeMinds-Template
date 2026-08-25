@@ -1,0 +1,16 @@
+ruleset lmt-core 0.1.0
+
+authority
+  coordination allow
+  product-write human
+  merge human
+  release human
+  publish human
+  delete human
+  access-change human
+  external-contact human
+end
+
+default deny
+unknown deny
+ambiguous block

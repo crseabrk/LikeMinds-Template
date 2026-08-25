@@ -1,0 +1,9 @@
+procedure signals
+  eligible signal find
+  latest-sha claim require
+  one signal maximum
+  claimed context read
+  authorized action require
+  result CHAT append
+  signal terminal update
+end

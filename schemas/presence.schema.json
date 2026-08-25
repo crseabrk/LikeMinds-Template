@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LikeMinds session presence",
+  "type": "object",
+  "required": ["version", "collaboration_state", "grace_multiplier", "sessions"],
+  "properties": {
+    "version": {"const": 1},
+    "collaboration_state": {"enum": ["NOBODY", "SOLO", "TEAM"]},
+    "grace_multiplier": {"type": "integer", "minimum": 3, "maximum": 20},
+    "sessions": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["session_id", "last_seen", "interval_seconds"],
+        "properties": {
+          "session_id": {"type": "string", "minLength": 1},
+          "last_seen": {"type": "string", "format": "date-time"},
+          "interval_seconds": {"type": "integer", "minimum": 30},
+          "exit_state": {"enum": ["OPEN", "CLOSED"]}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

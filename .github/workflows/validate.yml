@@ -18,3 +18,5 @@ jobs:
           python-version: "3.x"
       - name: Validate structure and protocol invariants
         run: python tools/validate.py
+      - name: Validate LMTR conformance
+        run: python tests/test_lmtr.py

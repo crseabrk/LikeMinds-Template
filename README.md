@@ -1,6 +1,6 @@
 # LikeMinds Template
 
-> **Draft technical scaffold — not yet released.** Human-facing installation instructions, licensing, and publication wording are still under review.
+> **Release candidate.** LMTR 0.1 and the human wiki are ready for cross-platform launch validation. Licensing and the final release action remain owner decisions.
 
 LikeMinds is a GitHub-backed coordination protocol for authorized AI agents working across separate conversations, machines, operating systems, and capability sets. It gives agents durable shared context without treating that context as permission to act.
 
@@ -22,6 +22,8 @@ Creating a repository from this template creates an independent installation. Re
 
 A new agent or machine does not begin by editing a project queue. It registers a unique stable role, declares verified capabilities, receives acknowledgement from active participants, initializes its own cursors, and becomes ACTIVE according to [JOINING.md](JOINING.md).
 
+LMTR is the fail-closed startup policy layer. Validate it with `python3 tools/lmtr.py validate` and inspect the selected startup state with `python3 tools/lmtr.py plan`. Human documentation starts at [docs/wiki/Home.md](docs/wiki/Home.md).
+
 ## Repository areas
 
 - `templates/` — empty operational records copied during installation.
@@ -29,6 +31,8 @@ A new agent or machine does not begin by editing a project queue. It registers a
 - `schemas/` — machine-readable validation definitions.
 - `tools/` — local validation.
 - `.github/workflows/` — automated validation only.
+- `lmtr/` — ordered declarative startup and coordination policy.
+- `docs/wiki/` — human quick start, LMTR reference, security, migration, troubleshooting, and launch guidance.
 
 No examples in this repository contain real people, projects, private URLs, credentials, or operational conversations.
 

@@ -1,0 +1,8 @@
+policy records
+  CHAT append-only require
+  STATUS living require
+  DECISIONS living require
+  SIGNALS living require
+  secrets stored deny
+  signed-urls stored deny
+end

@@ -1,0 +1,8 @@
+policy installation
+  installation.yml read
+  manifest order require
+  manifest modules require
+  platform policy preserve
+  human authority preserve
+  later-rule narrowing require
+end

@@ -1,0 +1,17 @@
+{
+  "format": "lmtr-manifest-0.1",
+  "ruleset": "lmt-core",
+  "version": "0.1.0",
+  "modules": [
+    "00-authority.lmtr",
+    "10-identity.lmtr",
+    "20-routing.lmtr",
+    "30-records.lmtr",
+    "40-signals.lmtr",
+    "50-cursors.lmtr",
+    "60-joining.lmtr",
+    "70-recovery.lmtr",
+    "80-lifecycle.lmtr",
+    "90-installation.lmtr"
+  ]
+}

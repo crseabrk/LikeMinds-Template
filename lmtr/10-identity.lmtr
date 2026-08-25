@@ -1,0 +1,6 @@
+policy identity
+  own-role identify
+  own-role unique require
+  own-role state require
+  other-role mutation deny
+end

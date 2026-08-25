@@ -1,0 +1,6 @@
+policy cursors
+  own-cursor update allow
+  other-cursor update deny
+  unread CHAT read
+  cursor after-read advance
+end

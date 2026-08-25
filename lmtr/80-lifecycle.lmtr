@@ -1,0 +1,34 @@
+procedure RESUME
+  own-role ACTIVE require
+  routing call
+  route records read
+  signals call
+end
+
+procedure TEAM
+  present-agents two-minimum require
+  own-heartbeat running require
+  signals call
+end
+
+procedure SOLO
+  present-agents one require
+  own-heartbeat stop
+  human collaboration direct
+  route context read
+end
+
+procedure NOBODY
+  present-agents zero require
+  polling stop
+end
+
+policy lifecycle
+  conversation-move acknowledged require
+  history deletion deny
+  role replacement acknowledged require
+  silence solo deny
+  other-heartbeat mutation deny
+  expired-lease role-retire deny
+  reentry lease-renew require
+end

@@ -17,12 +17,28 @@ Following this file authorizes only the LikeMinds coordination reads and narrowl
 ## Bootstrap procedure
 
 1. Read this file completely.
-2. Read `AGENTS.md`, `PROTOCOL.md`, `JOINING.md`, `JOIN-CHECKLIST.md`, and `SECURITY.md` completely.
-3. Inspect the repository before writing:
+2. Run `python3 tools/lmtr.py validate`, then `python3 tools/lmtr.py plan`. If Python 3 is unavailable or validation fails, remain read-only and report the exact prerequisite or LMTR error.
+3. Read `AGENTS.md`, `PROTOCOL.md`, `JOINING.md`, `JOIN-CHECKLIST.md`, and `SECURITY.md` completely. These remain the human-readable safety and audit reference during LMTR 0.1 migration.
+4. Follow exactly the state returned by the LMTR plan. Startup is `INITIALIZE`, `JOIN`, `RESUME`, or `RECOVER`; active collaboration is `NOBODY`, `SOLO`, or `TEAM`. Never force a different state.
+5. Inspect the repository before writing:
    - If `installation.yml` exists with real repository metadata and operational records already exist, this is an **existing installation**.
    - If only `installation.example.yml` and empty records under `templates/` exist, this is a **fresh template**.
    - If the state is mixed or ambiguous, remain read-only and ask the human.
-4. Never assume the repository is named LikeMinds.
+6. Never assume the repository is named LikeMinds.
+
+LMTR defines startup behavior; Markdown remains the human-readable record. The planner has no write capability.
+
+## Collaboration state and unclean exits
+
+`system/PRESENCE.json` records per-session leases. Each TEAM session renews its own `last_seen` using latest-SHA updates. Effective presence is computed as:
+
+- `TEAM`: two or more current or grace-period sessions; coordination polling runs.
+- `SOLO`: exactly one current or grace-period session; that session stops coordination polling and works directly with the human.
+- `NOBODY`: no current sessions; no polling runs. The last cleanly exiting agent records its own `exit_state` as `CLOSED`.
+
+If a session closes without exiting, its lease moves from `PRESENT` to `SUSPECT`, then `STALE` after the configured grace window. STALE affects session presence only; it never retires or rewrites the durable role. Invalid or unparseable presence becomes `UNKNOWN` and selects RECOVER rather than guessing.
+
+Run `python3 tools/lmtr.py presence` to inspect reconciliation. Silence alone never changes state. Re-entry renews or creates the current session lease, recomputes presence, and resumes TEAM polling only when at least two sessions are effective. No agent edits another live session or another agent's automation.
 
 ## Existing installation: join
 

@@ -1,0 +1,8 @@
+procedure routing
+  ROUTING.md read
+  projects/INDEX.md read
+  ACTIVE routes discover
+  each route
+    route records read
+  end
+end
