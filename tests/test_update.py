@@ -21,7 +21,15 @@ def run(destination: Path, *args: str, expected: int = 0) -> subprocess.Complete
 
 
 def copy_repo(source: Path, destination: Path) -> None:
-    shutil.copytree(source, destination, ignore=shutil.ignore_patterns(".git", ".likeminds", "__pycache__"))
+    source = source.resolve()
+
+    def ignore(directory: str, names: list[str]) -> set[str]:
+        ignored = {name for name in names if name in {".git", ".likeminds", "__pycache__"}}
+        if Path(directory).resolve() == source:
+            ignored.update(name for name in names if name in {"projects", "system", "installation.yml", "ROUTING.md"})
+        return ignored
+
+    shutil.copytree(source, destination, ignore=ignore)
 
 
 def main() -> None:

@@ -1,6 +1,6 @@
 {
   "format": "likeminds-managed-files-1",
-  "version": "0.1.4-draft",
+  "version": "0.1.5-draft",
   "protected_paths": [
     "installation.yml",
     "ROUTING.md",

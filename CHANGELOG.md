@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.5-draft
+
+- Isolate updater integration fixtures from live installation projects, system records, routing, and installation metadata.
+
 ## 0.1.4-draft
 
 - Allow installations to acknowledge specific preserved historical duplicate message IDs without weakening checks for new duplicates.
