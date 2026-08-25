@@ -20,7 +20,7 @@ Humans should begin with [START-HERE.md](START-HERE.md) and the human [Installat
 
 Authorized agents use [BOOTSTRAP.md](BOOTSTRAP.md) as their state-aware dispatcher. New agents joining an existing installation also follow [ONBOARDING.md](ONBOARDING.md), [JOINING.md](JOINING.md), and [JOIN-CHECKLIST.md](JOIN-CHECKLIST.md).
 
-Do not create product repositories from this template. Create one **private LikeMinds repository** from it, then add coordination workspaces for the owner's projects inside that installation. The product repositories remain separate and receive no LikeMinds framework files unless a future extension is separately designed and authorized.
+Do not create product repositories from this template. Create one **private repository named `LikeMinds` by default**, then add coordination workspaces for the owner's projects inside that installation. The product repositories remain separate and receive no LikeMinds framework files unless a future extension is separately designed and authorized.
 
 A new agent or machine does not begin by editing a project queue. It registers a unique stable role, declares verified capabilities, receives acknowledgement from active participants, initializes its own cursors, and becomes ACTIVE according to [JOINING.md](JOINING.md).
 
