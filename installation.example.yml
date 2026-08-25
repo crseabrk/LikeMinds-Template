@@ -1,5 +1,5 @@
 likeminds:
-  protocol_version: "0.1.5-alpha.1"
+  protocol_version: "0.1.5-alpha.2"
   repository: "OWNER/REPOSITORY"
   default_visibility: "private"
   routing_file: "ROUTING.md"

@@ -6,6 +6,12 @@ A GitHub connector may expose individual repository files without creating a loc
 
 The agent should report connector-only access, state whether any command was attempted, and label any per-file or in-memory review as **static inspection only**. It must remain read-only until it obtains an executable checkout or the human explicitly approves narrowly scoped connector-only coordination writes. Connector read/write access does not imply terminal execution, Python availability, or a local repository tree.
 
+For a fresh private template, the human may respond with an approval such as:
+
+> I explicitly approve connector-only initialization of OWNER/REPOSITORY. Record the missing authenticated checkout and unexecuted validation as capability limitations. Verify every remote change and commit, and do not claim that local tests passed.
+
+The agent then follows **Connector-only initialization** in root `BOOTSTRAP.md`. It records the installation as **initialized, validation deferred** and leaves an executable-checkout validation as a named follow-up. Approval for this fallback applies only to LikeMinds coordination records in the named repository; it grants no product or external authority.
+
 - **LMTR-E001/E002:** manifest missing, invalid, or unsupported.
 - **LMTR-E003/E004:** module list is empty, duplicated, or out of visible order.
 - **LMTR-E005/E006:** unsafe or missing module path.
