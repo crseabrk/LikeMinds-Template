@@ -17,7 +17,10 @@ Following this file authorizes only the LikeMinds coordination reads and narrowl
 ## Bootstrap procedure
 
 1. Read this file completely.
-2. Run `python3 tools/lmtr.py validate`, then `python3 tools/lmtr.py plan`. If Python 3 is unavailable or validation fails, remain read-only and report the exact prerequisite or LMTR error.
+2. Determine whether the repository is available as an executable local checkout or only through a file/connector interface.
+   - **Executable checkout:** run `python3 tools/lmtr.py validate`, `python3 tests/test_lmtr.py`, and `python3 tools/lmtr.py plan` from the repository root.
+   - **Connector-only access:** do not describe an in-memory or per-file inspection as execution or equivalent validation. You may perform a clearly labelled static inspection, but report that the supplied validator and tests remain unexecuted and identify the missing checkout or execution capability.
+   - If the commands cannot be executed, validation fails, or repository access mode is ambiguous, remain read-only. Obtain an executable checkout or explicit human approval for narrowly scoped connector-only coordination writes before changing records. Quote the exact attempted command and error; if no command was attempted, say so and explain why.
 3. Read `AGENTS.md`, `PROTOCOL.md`, `JOINING.md`, `JOIN-CHECKLIST.md`, and `SECURITY.md` completely. These remain the human-readable safety and audit reference during LMTR 0.1 migration.
 4. Follow exactly the state returned by the LMTR plan. Startup is `INITIALIZE`, `JOIN`, `RESUME`, or `RECOVER`; active collaboration is `NOBODY`, `SOLO`, or `TEAM`. Never force a different state.
 5. Inspect the repository before writing:
@@ -27,6 +30,8 @@ Following this file authorizes only the LikeMinds coordination reads and narrowl
 6. Never assume the repository is named LikeMinds.
 
 LMTR defines startup behavior; Markdown remains the human-readable record. The planner has no write capability.
+
+Static inspection can detect missing modules, malformed visible syntax, or protected-rule omissions, but it is not a substitute for running the supplied validator and conformance tests. Connector access and local execution are separate capabilities and must be declared separately.
 
 ## Collaboration state and unclean exits
 

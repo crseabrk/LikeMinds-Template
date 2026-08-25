@@ -29,6 +29,15 @@ def main() -> None:
     ):
         assert rule in corpus, rule
 
+    bootstrap = (ROOT / "BOOTSTRAP.md").read_text(encoding="utf-8")
+    for safeguard in (
+        "Connector-only access",
+        "static inspection",
+        "remain read-only",
+        "if no command was attempted, say so",
+    ):
+        assert safeguard in bootstrap, safeguard
+
     with tempfile.TemporaryDirectory() as directory:
         test_root = Path(directory)
         (test_root / "system").mkdir()
