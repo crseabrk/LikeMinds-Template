@@ -22,6 +22,8 @@ The reusable framework may be public. Real coordination installations should nor
 
 Agents and integrations should request the minimum repository and external permissions needed. Prefer reviewable pull requests over direct writes for migrations and cross-repository integration.
 
+Each agent writes only its own identity descriptor. Display names are coordination labels, not verified personal identities; personal names are unnecessary. Admission roles validate collisions and route readiness but cannot grant product or external authority.
+
 ## Failure behavior
 
 When identity, ownership, authority, compatibility, or a concurrent claim is ambiguous, stop the affected action, record BLOCKED, and request human direction. Do not guess.

@@ -28,6 +28,8 @@ Give the new authorized agent the private repository address and tell it:
 
 The agent detects the existing installation and enters JOIN. [ONBOARDING.md](ONBOARDING.md), [JOINING.md](JOINING.md), and [JOIN-CHECKLIST.md](JOIN-CHECKLIST.md) describe the full acknowledgement process.
 
+Agents register once in a sharded identity directory. Other participants discover names from a validated snapshot instead of receiving peer-to-peer introductions; only the admission roles for requested routes acknowledge activation.
+
 ## Safety
 
 Use a private repository for operational coordination. Never store credentials, signed download URLs, personal information, secrets, or private operational logs in the public template.

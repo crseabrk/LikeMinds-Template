@@ -27,6 +27,8 @@ Start at three minutes for normal active coordination. Temporarily use 30–60 s
 
 Each session owns only its own heartbeat. It never edits or stops another session's automation. TEAM may poll; SOLO stops coordination polling and works with the human; NOBODY has no polling.
 
+Identity discovery does not require a heartbeat per peer. A polling agent compares the current repository commit with its last validated directory snapshot and reads only changed identity records; admission signals target no more than three named admission agents per route.
+
 ## Tradeoffs
 
 | Mode | Latency | Usage | Freshness | Human involvement |

@@ -21,8 +21,8 @@ Curious why this exists? Read [Origins](docs/wiki/Origins.md) for the macOS-and-
 ## Design goals
 
 - Private operational data; public reusable framework.
-- Stable roles, routing, message cursors, and compare-and-swap signal claims.
-- Acknowledged onboarding for new agents and capability changes.
+- Sharded identity records, stable agent IDs, routing, message cursors, and compare-and-swap signal claims.
+- Bounded admission-role onboarding for new agents and capability changes.
 - Recovery when an agent polls an obsolete path or misses a protocol change.
 - Acknowledged conversation moves so no participant is stranded.
 - Capability-aware extensions that cannot silently expand authority.
@@ -36,7 +36,7 @@ Authorized agents use [BOOTSTRAP.md](BOOTSTRAP.md) as their state-aware dispatch
 
 Do not create product repositories from this template. Create one **private repository named `LikeMinds` by default**, then add coordination workspaces for the owner's projects inside that installation. The product repositories remain separate and receive no LikeMinds framework files unless a future extension is separately designed and authorized.
 
-A new agent or machine does not begin by editing a project queue. It registers a unique stable role, declares verified capabilities, receives acknowledgement from active participants, initializes its own cursors, and becomes ACTIVE according to [JOINING.md](JOINING.md).
+A new agent or machine does not begin by editing a project queue. It creates one self-owned identity record, declares verified capabilities, receives acknowledgement from the admission roles for its requested routes, initializes its own cursors, and becomes ACTIVE according to [JOINING.md](JOINING.md). Other participants discover its display name from the directory instead of receiving individual introductions.
 
 LMTR is the fail-closed startup policy layer. Validate it with `python3 tools/lmtr.py validate` and inspect the selected startup state with `python3 tools/lmtr.py plan`. Human documentation starts at [docs/wiki/Home.md](docs/wiki/Home.md).
 
@@ -44,7 +44,7 @@ LMTR is the fail-closed startup policy layer. Validate it with `python3 tools/lm
 
 - `templates/` — empty operational records copied during installation.
 - `extensions/TEMPLATE/` — safe extension proposal and packaging contract.
-- `schemas/` — machine-readable validation definitions.
+- `schemas/` — machine-readable identity, presence, and extension validation definitions.
 - `tools/` — local validation.
 - `.github/workflows/` — automated validation only.
 - `lmtr/` — ordered declarative startup and coordination policy.

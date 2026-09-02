@@ -13,6 +13,7 @@ REQUIRED = [
     "templates/system/AGENTS.md", "templates/system/CHAT.md",
     "templates/system/SIGNALS.md", "templates/project/STATUS.md",
     "templates/system/PRESENCE.json", "schemas/presence.schema.json",
+    "templates/system/identities/README.md", "schemas/identity.schema.json",
     "templates/project/DECISIONS.md", "templates/project/CHAT.md",
     "templates/project/SIGNALS.md", "extensions/TEMPLATE/manifest.yml",
     "extensions/TEMPLATE/EXTENSION.md", "extensions/TEMPLATE/INSTALL.md",
@@ -24,6 +25,7 @@ REQUIRED = [
     "docs/wiki/Capability-Audit.md", "templates/system/CAPABILITY-AUDIT.md",
     "updates/managed-files.json", "tools/update.py", "tests/test_update.py", "tests/test_clean_install.py",
     "docs/wiki/Coordination-Modes.md",
+    "docs/wiki/Identity-and-Discovery.md",
     "docs/wiki/Security-and-Authority.md", "docs/wiki/Launch-Checklist.md",
     "tests/test_lmtr.py",
 ]
@@ -36,10 +38,13 @@ PROTECTED_PHRASES = [
 JOINING_PHRASES = [
     "proposed → acknowledging → active",
     "only active roles may claim project work",
-    "every current active project's full record",
-    "system-only announcement remains insufficient",
+    "identity directory snapshot",
+    "requested active route",
+    "register once",
+    "peer-to-peer introductions",
+    "admission roles",
     "human-authorized solo continuation",
-    "creates a new active successor route",
+    "creates a linked active successor route",
     "solo-readiness",
     "the human—not the agent—chooses the operating mode",
     "bundled targeted root routing signal",
@@ -148,8 +153,9 @@ def main():
     validate_signal_states(errors)
     validate_public_safety(errors)
     try:
-        from lmtr import validate as validate_lmtr
+        from lmtr import load_identity_directory, validate as validate_lmtr
         validate_lmtr()
+        load_identity_directory(ROOT)
     except Exception as exc:
         errors.append(f"LMTR validation failed: {exc}")
     if errors:

@@ -8,6 +8,7 @@ likeminds:
   installed_extensions: []
   lmtr_manifest: "lmtr/manifest.json"
   bootstrap_dispatcher: "BOOTSTRAP.md"
+  identity_directory: "system/identities"
 
 policy:
   collaboration_state: "NOBODY"
@@ -17,6 +18,8 @@ policy:
   context_grants_authority: false
   require_latest_sha_writes: true
   require_acknowledged_moves: true
+  require_sharded_identity_records: true
+  require_route_admission_roles: true
   stale_poll_recovery_after: 3
 
 agent:

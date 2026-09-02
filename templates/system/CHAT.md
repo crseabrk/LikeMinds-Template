@@ -2,7 +2,7 @@
 
 ## Read cursors
 
-| Agent role | Last message processed |
+| Agent ID | Last message processed |
 |---|---|
 
 ## Messages

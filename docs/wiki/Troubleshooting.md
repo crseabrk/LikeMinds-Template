@@ -20,8 +20,15 @@ The agent then follows **Connector-only initialization** in root `BOOTSTRAP.md`.
 - **LMTR-E009:** invalid block arity.
 - **LMTR-E010:** statement outside a valid top-level block.
 - **LMTR-E012:** protected safety rule is missing.
+- **LMTR-E030/E031:** the identity directory path or record layout is unsafe or unreadable.
+- **LMTR-E032:** an identity record has unsupported fields, state, ID, or filename.
+- **LMTR-E033:** an identity timestamp is missing, timezone-free, or out of order.
+- **LMTR-E034:** a requested or approved route list is malformed or duplicated.
+- **LMTR-E035:** a current or previous display name collides case-insensitively.
+- **LMTR-E036:** capability fields or value types are invalid.
+- **LMTR-E037:** a proposal already claims approved routes or approves an unrequested route.
 
-If `plan` returns RECOVER, inspect installation metadata, root routing, and `system/AGENTS.md`. Do not force INITIALIZE or reuse another role's cursor.
+If `plan` returns RECOVER, inspect installation metadata, root routing, `system/AGENTS.md`, and `python3 tools/lmtr.py directory`. Do not force INITIALIZE or reuse another agent's identity or cursor.
 
 ## Update conflicts
 

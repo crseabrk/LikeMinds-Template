@@ -20,6 +20,20 @@ If preserved operational history already contains duplicate message IDs, record 
 
 Never use the template checkout itself as the destination. Pull or fetch the source separately and pin a reviewed commit SHA.
 
+## Migrating to sharded identity discovery
+
+Managed updates deliberately protect root `ROUTING.md` and `system/`, so installing the framework files does not silently change an installation's admission model. A human must approve this operational migration.
+
+1. Apply and validate the managed framework update first.
+2. Create `system/identities/` without removing or rewriting `system/AGENTS.md`.
+3. For every non-retired legacy role, create a unique immutable agent ID and one schema-valid identity file. Preserve the old role as its display name or previous alias and preserve membership state, capabilities, routes, and timestamps without inventing missing facts.
+4. Add `identity_directory`, `require_sharded_identity_records`, and `require_route_admission_roles` from `installation.example.yml` to the protected `installation.yml` after human review.
+5. Add an `Admission agent IDs` column to root `ROUTING.md`. Name one to three current ACTIVE identities for the system route and each ACTIVE project route.
+6. Run `python3 tools/lmtr.py directory`, the full validation suite, and a dry-run join that targets only those admission roles.
+7. Record one durable cutover decision and the exact commit. Keep legacy rows as history.
+
+Until every step succeeds, continue the legacy all-participant acknowledgement procedure. Never mix legacy and sharded quorum rules within a join. Rollback means reverting the cutover decision and routing change while preserving every identity file and coordination message as history.
+
 ## Connector-only update workflow
 
 An authorized connector-only agent follows the same manifest and state semantics:

@@ -1,6 +1,6 @@
 # Capability Audit
 
-Audited role: STABLE-ROLE
+Audited identity: AGENT-ID (DISPLAY-NAME)
 Audited at: YYYY-MM-DDTHH:MM:SSZ
 Requested by: HUMAN-OR-ONBOARDING-REFERENCE
 Repository and route: OWNER/REPOSITORY; ROUTE
@@ -11,13 +11,13 @@ Evidence freshness: concise scope and timestamp
 | Capability | State | Evidence | Points awarded | Maximum |
 |---|---|---|---:|---:|
 | Authoritative repository and complete reads | UNVERIFIED | — | 0 | 15 |
-| Routing and record interpretation | UNVERIFIED | — | 0 | 10 |
+| Identity snapshot, routing, and record interpretation | UNVERIFIED | — | 0 | 10 |
 | Latest-blob-SHA writes | UNVERIFIED | — | 0 | 15 |
 | Own cursor updates and correct presence state | UNVERIFIED | Include required non-action when NOBODY is correct | 0 | 10 |
 | Append-only and data safety | UNVERIFIED | — | 0 | 10 |
-| Capability and authority separation | UNVERIFIED | — | 0 | 10 |
+| Identity, admission, capability, and authority separation | UNVERIFIED | — | 0 | 10 |
 | Executable checkout | UNVERIFIED | — | 0 | 10 |
-| Python, validator, planner, and tests | UNVERIFIED | — | 0 | 15 |
+| Python, LMTR and directory validators, planner, and tests | UNVERIFIED | — | 0 | 15 |
 | Gap and mitigation reporting | UNVERIFIED | — | 0 | 5 |
 
 Basic LMTR score: 0/100
