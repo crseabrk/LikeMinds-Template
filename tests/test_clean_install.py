@@ -40,16 +40,46 @@ def main() -> None:
         shutil.copytree(installation / "templates" / "system", installation / "system")
         shutil.copytree(installation / "templates" / "project", installation / "projects" / "example")
 
-        registry = installation / "system" / "AGENTS.md"
-        text = registry.read_text(encoding="utf-8")
-        marker = "|---|---|---|---|---|---|---|"
-        row = "| Clean Room Coordinator | ACTIVE | local validation only | system, example | test | test | smoke-test role |"
-        registry.write_text(text.replace(marker, marker + "\n" + row, 1), encoding="utf-8")
+        unregistered = json.loads(run(installation, sys.executable, "tools/lmtr.py", "plan"))
+        assert unregistered["state"] == "RECOVER"
+        assert unregistered["directory"]["count"] == 0
+
+        identity = {
+            "version": 1,
+            "agent_id": "agt-clean-room-001",
+            "display_name": "Clean Room Coordinator",
+            "previous_display_names": [],
+            "membership_state": "ACTIVE",
+            "capabilities": {
+                "repository_read": True,
+                "repository_write": True,
+                "latest_sha_updates": True,
+                "local_checkout": True,
+                "terminal_execution": True,
+                "python_3": True,
+                "recurring_polling": False,
+                "persistent_task_context": False,
+                "external_notification": False,
+                "operating_environment": "Clean-room test fixture",
+                "tool_limits": "Local validation only",
+            },
+            "requested_routes": ["system", "example"],
+            "approved_routes": ["system", "example"],
+            "authority_boundary": "Smoke-test coordination only",
+            "record_version": 2,
+            "proposed_at": "2026-01-01T00:00:00Z",
+            "activated_at": "2026-01-01T00:00:01Z",
+            "updated_at": "2026-01-01T00:00:01Z",
+        }
+        identity_path = installation / "system" / "identities" / "agt-clean-room-001.json"
+        identity_path.write_text(json.dumps(identity, indent=2) + "\n", encoding="utf-8")
 
         resumed = json.loads(run(installation, sys.executable, "tools/lmtr.py", "plan"))
         assert resumed["state"] == "RESUME"
         assert resumed["presence"]["collaboration_state"] == "NOBODY"
+        assert resumed["directory"]["count"] == 1
         run(installation, sys.executable, "tools/lmtr.py", "validate")
+        run(installation, sys.executable, "tools/lmtr.py", "directory")
         run(installation, sys.executable, "tests/test_lmtr.py")
         run(installation, sys.executable, "tools/validate.py")
 

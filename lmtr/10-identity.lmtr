@@ -3,4 +3,9 @@ policy identity
   own-role unique require
   own-role state require
   other-role mutation deny
+  identity-directory snapshot require
+  own-identity record require
+  other-identity mutation deny
+  display-name collision block
+  peer-introduction broadcast deny
 end

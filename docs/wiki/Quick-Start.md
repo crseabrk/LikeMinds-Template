@@ -11,7 +11,7 @@ For agent-assisted setup, send the agent:
 This is an agent instruction, not the human installation procedure. The same command works for a fresh installation and an existing one. The LMTR planner selects one state:
 
 - **INITIALIZE** creates only missing installation records.
-- **JOIN** registers and acknowledges a new stable role.
+- **JOIN** registers one sharded identity and obtains bounded route-admission acknowledgements.
 - **RESUME** continues an existing ACTIVE role from its own cursors.
 - **RECOVER** stops ambiguous or incomplete state from being treated as valid.
 
@@ -23,6 +23,7 @@ Active presence has three states: **NOBODY** (zero sessions), **SOLO** (one sess
 python3 tools/lmtr.py validate
 python3 tools/lmtr.py plan
 python3 tools/lmtr.py presence
+python3 tools/lmtr.py directory
 python3 tools/validate.py
 ```
 

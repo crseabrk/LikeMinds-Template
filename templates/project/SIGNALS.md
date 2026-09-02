@@ -9,8 +9,8 @@ No signals yet.
 ```md
 ### PROJECT-SIG-001
 Created: YYYY-MM-DDTHH:MM:SSZ
-From: stable role
-Target: stable role or ANY
+From: immutable agent ID
+Target: immutable agent ID or ANY
 State: READY
 Claimed-By: —
 Claimed-At: —

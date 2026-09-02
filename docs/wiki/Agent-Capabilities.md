@@ -1,6 +1,6 @@
 # Agent Capabilities
 
-LikeMinds separates an agent's identity, technical capabilities, route assignment, and human authority. Possessing a tool does not authorize its use, and authorization does not prove that the required tool is available.
+LikeMinds separates an agent's immutable ID, human-readable display name, technical capabilities, route assignment, and human authority. Possessing a tool does not authorize its use, and authorization does not prove that the required tool is available.
 
 ## Basic coordination requirements
 
@@ -8,6 +8,7 @@ An agent must truthfully declare whether it can:
 
 - read the authoritative repository and identify its exact owner and name;
 - read complete UTF-8 coordination records;
+- validate a commit-pinned identity directory snapshot and update only its own identity file;
 - preserve append-only history;
 - perform latest-blob-SHA compare-and-swap writes;
 - update only its own cursors and, when the approved mode requires one, its own session lease;

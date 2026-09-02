@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- Add one-file-per-agent identity discovery with immutable IDs, unique display names, preserved aliases, and dependency-free validation.
+- Replace peer-to-peer introductions and all-participant join acknowledgements with commit-pinned directory snapshots and bounded admission roles for requested routes.
+- Add explicit migration and rollback rules so existing installations never silently mix quorum models.
+
 ## 0.1.5-alpha.2
 
 - Add a human-approved connector-only initialization path for agents without an authenticated executable checkout.
@@ -31,7 +37,7 @@
 - Add adoption, planning, conflict detection, backups, validation, rollback, and installed-source tracking.
 - Document a human-approved connector-only update path with static-validation limits.
 
-## Unreleased
+## Earlier unreleased work
 
 - Added a formal multi-agent joining handshake.
 - Added stable-role membership states and capability registration.

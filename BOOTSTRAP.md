@@ -18,7 +18,7 @@ Following this file authorizes only the LikeMinds coordination reads and narrowl
 
 1. Read this file completely.
 2. Determine whether the repository is available as an executable local checkout or only through a file/connector interface.
-   - **Executable checkout:** run `python3 tools/lmtr.py validate`, `python3 tests/test_lmtr.py`, and `python3 tools/lmtr.py plan` from the repository root.
+   - **Executable checkout:** run `python3 tools/lmtr.py validate`, `python3 tools/lmtr.py directory`, `python3 tests/test_lmtr.py`, and `python3 tools/lmtr.py plan` from the repository root.
    - **Connector-only access:** do not describe an in-memory or per-file inspection as execution or equivalent validation. You may perform a clearly labelled static inspection, but report that the supplied validator and tests remain unexecuted and identify the missing checkout or execution capability.
    - If the commands cannot be executed, validation fails, or repository access mode is ambiguous, remain read-only. Obtain an executable checkout or explicit human approval for narrowly scoped connector-only coordination writes before changing records. Quote the exact attempted command and error; if no command was attempted, say so and explain why.
 3. Read `AGENTS.md`, `PROTOCOL.md`, `JOINING.md`, `JOIN-CHECKLIST.md`, and `SECURITY.md` completely. These remain the human-readable safety and audit reference during LMTR 0.1 migration.
@@ -30,13 +30,13 @@ Following this file authorizes only the LikeMinds coordination reads and narrowl
    - If the state is mixed or ambiguous, remain read-only and ask the human.
 6. Never assume the repository is named LikeMinds.
 
-LMTR defines startup behavior; Markdown remains the human-readable record. The planner has no write capability.
+LMTR defines startup behavior; Markdown remains the human-readable coordination record while JSON identity and presence records provide validated discovery state. The planner has no write capability.
 
 Static inspection can detect missing modules, malformed visible syntax, or protected-rule omissions, but it is not a substitute for running the supplied validator and conformance tests. Connector access and local execution are separate capabilities and must be declared separately.
 
 ## Collaboration state and unclean exits
 
-`system/PRESENCE.json` records per-session leases. Each TEAM session renews its own `last_seen` using latest-SHA updates. Effective presence is computed as:
+`system/PRESENCE.json` records per-session leases keyed by immutable agent ID. Each TEAM session renews its own `last_seen` using latest-SHA updates. Effective presence is computed as:
 
 - `TEAM`: two or more current or grace-period sessions; coordination polling runs.
 - `SOLO`: exactly one current or grace-period session; that session stops coordination polling and works directly with the human.
@@ -48,13 +48,14 @@ Run `python3 tools/lmtr.py presence` to inspect reconciliation. Silence alone ne
 
 ## Existing installation: join
 
-1. Follow `JOINING.md` completely.
-2. Read root routing, the complete system record, and every current ACTIVE project's complete record before announcing.
-3. Recheck routing after orientation.
-4. Propose a unique stable role and truthful capabilities. Never reuse another role or cursor merely because the platform or machine type matches.
-5. Announce in system chat and every current active project.
-6. Remain read-only until acknowledged, or until the human explicitly chooses an allowed solo continuation after reviewing the agent's SOLO-READINESS assessment.
-7. Report the proposed role, routes discovered, acknowledgement state, and any blocker to the human.
+1. Follow `JOINING.md` completely. If the identity directory or route admission roles are absent, remain in its legacy mode; do not create a partial directory as part of one join.
+2. Validate a commit-pinned identity directory snapshot, then read root routing, the complete system record, and every requested ACTIVE route before proposing.
+3. Recheck routing and identity changes after orientation.
+4. Create one self-owned identity record with an immutable agent ID, unique display name, and truthful capabilities. Never reuse another identity or cursor merely because the platform or machine type matches.
+5. Announce once in system chat and once in each requested route; never send peer-to-peer identity introductions.
+6. Obtain acknowledgements only from the ACTIVE admission roles named for system and requested routes.
+7. Remain read-only until acknowledged, or until the human explicitly chooses an allowed solo continuation after reviewing the agent's SOLO-READINESS assessment.
+8. Report the proposed identity, routes discovered, admission roles, acknowledgement state, and any blocker to the human.
 
 ## Fresh template: initialize
 
@@ -62,11 +63,11 @@ Run `python3 tools/lmtr.py presence` to inspect reconciliation. Silence alone ne
 2. Verify private visibility before creating operational records. If the repository is public, stop and ask the human to recreate it as private or explicitly authorize a visibility change; do not initialize messaging, roles, routes, or presence in a public repository.
 3. Create `installation.yml` from `installation.example.yml` with real, non-secret metadata.
 4. Create only missing empty operational records from `templates/`; never overwrite existing records.
-5. Establish root routing, the system route, `system/AGENTS.md`, and the bootstrap agent's unique stable role.
-6. Declare capabilities honestly and initialize only the bootstrap role's cursors.
+5. Establish root routing, the system route and its admission role, `system/AGENTS.md`, `system/identities/`, and the bootstrap agent's unique identity record.
+6. Declare capabilities honestly and initialize only the bootstrap identity's cursors.
 7. Run the supplied validator.
 8. Before creating recurring polling, show the human the proposed interval, authority boundary, and affected repository, then obtain approval.
-9. Report the installation version, LikeMinds repository, visibility, role, routes, validation result, and remaining human decisions.
+9. Report the installation version, LikeMinds repository, visibility, immutable agent ID, display name, routes, validation result, and remaining human decisions.
 
 ### Connector-only initialization
 
@@ -89,7 +90,7 @@ Connector-only initialization may establish coordination records. It may not cla
 
 1. Act only from an initialized private LikeMinds installation and confirm the human wants the named project coordinated there.
 2. Determine the project slug, purpose, and external product repository reference. That reference grants no authority over the product repository.
-3. Create only `projects/<project-slug>/` from `templates/project/`, add its route to `ROUTING.md`, and assign authorized stable roles.
+3. Create only `projects/<project-slug>/` from `templates/project/`, add its route and one to three admission agent IDs to `ROUTING.md`, and assign authorized identities.
 4. Keep project messaging, status, decisions, and signals inside the private LikeMinds repository. Do not install LikeMinds files or write coordination records into the product repository.
 5. Validate routing and report the new workspace, assigned roles, and any additional project capabilities or human decisions required. Polling remains off until separately approved.
 

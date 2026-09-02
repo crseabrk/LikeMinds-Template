@@ -14,7 +14,7 @@ The public template cannot enforce creation-form choices. Bootstrap stops before
 
 ![Annotated GitHub creation form showing the required owner, LikeMinds repository name, branches-off setting, and Private visibility](../images/create-private-likeminds-repository.webp)
 
-This repository is the durable coordination home. It contains the agent registry, routing, presence, messages, signals, decisions, status, capability records, and audit history. It may coordinate many projects.
+This repository is the durable coordination home. It contains the sharded identity directory, routing, presence, messages, signals, decisions, status, capability records, and audit history. It may coordinate many projects.
 
 Do not create product repositories from this template and do not install these framework files into an existing product repository. A project such as CMQ or a test bed such as Salute is represented by a workspace inside the private LikeMinds installation.
 
@@ -34,9 +34,11 @@ Copy, without overwriting existing files:
 
 Keep records empty until you deliberately initialize roles, routes, and projects. Never copy another installation's CHAT, SIGNALS, cursors, or role registry.
 
-### 3. Register the first role
+### 3. Register the first identity
 
-In `system/AGENTS.md`, add one unique stable role for the first authorized agent and record only verified capabilities. Use the [Agent Capabilities](Agent-Capabilities.md) contract to distinguish repository access, latest-SHA writes, local checkout, command execution, Python, and polling. Initialize only that role's cursors. Leave `system/PRESENCE.json` at NOBODY before a session starts.
+Create one `system/identities/AGENT-ID.json` record for the first authorized agent using the schema and the example in `system/identities/README.md`. The immutable ID must match the filename; choose a unique descriptive display name and record only verified capabilities. Make this bootstrap identity ACTIVE, list `system` as an approved route, and name it as the initial system admission role in root `ROUTING.md`. `system/AGENTS.md` remains the policy and legacy migration ledger. Initialize only the bootstrap identity's cursors. Leave `system/PRESENCE.json` at NOBODY before a session starts.
+
+See [Identity and Discovery](Identity-and-Discovery.md) for the one-record-per-agent model, rename rules, and bounded admission flow.
 
 ### 4. Validate
 
@@ -44,6 +46,7 @@ In `system/AGENTS.md`, add one unique stable role for the first authorized agent
 python3 tools/lmtr.py validate
 python3 tools/lmtr.py plan
 python3 tools/lmtr.py presence
+python3 tools/lmtr.py directory
 python3 tests/test_lmtr.py
 python3 tools/validate.py
 ```
@@ -52,7 +55,7 @@ Do not continue if a command fails. Consult [Troubleshooting](Troubleshooting.md
 
 ### 5. Add a project coordination workspace
 
-Choose a lowercase project slug, create `projects/<slug>/` from `templates/project/`, and add the route to `ROUTING.md`. In that private workspace, record the external product repository and purpose in STATUS. Messaging, decisions, status, and signals stay here; no LikeMinds files are written to the product repository.
+Choose a lowercase project slug, create `projects/<slug>/` from `templates/project/`, and add the route plus at least one bounded ACTIVE admission role to `ROUTING.md`. In that private workspace, record the external product repository and purpose in STATUS. Messaging, decisions, status, and signals stay here; no LikeMinds files are written to the product repository.
 
 ### 6. Choose coordination mode
 
@@ -90,4 +93,4 @@ When an authorized checkout-capable agent becomes available, ask it to run the f
 
 ## Adding another agent later
 
-Give the new authorized agent the private repository address and tell it to follow `BOOTSTRAP.md`. Existing installation state selects JOIN. The newcomer remains read-only until acknowledgements activate its unique role.
+Give the new authorized agent the private repository address and tell it to follow `BOOTSTRAP.md`. Existing installation state selects JOIN. The newcomer registers once, announces only in system and requested routes, and remains read-only until the relevant admission roles activate its unique identity.

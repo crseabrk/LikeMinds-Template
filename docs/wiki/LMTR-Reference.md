@@ -22,6 +22,8 @@ LMTR 0.1 requires default deny, unknown deny, ambiguous block, human approval fo
 ```sh
 python3 tools/lmtr.py validate
 python3 tools/lmtr.py plan
+python3 tools/lmtr.py presence
+python3 tools/lmtr.py directory
 ```
 
-`plan` emits a machine-readable startup and presence state. `presence` reports PRESENT, SUSPECT, STALE, or UNKNOWN per session and derives NOBODY, SOLO, TEAM, or RECOVER. These commands do not perform writes.
+`plan` emits machine-readable startup, presence, and identity-directory state. `presence` reports PRESENT, SUSPECT, STALE, or UNKNOWN per session and derives NOBODY, SOLO, TEAM, or RECOVER. `directory` validates every sharded identity file, detects ID and display-name collisions, and emits a compact roster. These commands do not perform writes.

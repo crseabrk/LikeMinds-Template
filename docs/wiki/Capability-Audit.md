@@ -13,13 +13,13 @@ Score each item using its listed maximum. Award full points only for current ver
 | Capability | Points |
 |---|---:|
 | Identify and read the authoritative repository and complete records | 15 |
-| Discover routing and interpret CHAT, SIGNALS, STATUS, and DECISIONS | 10 |
+| Validate the identity snapshot, discover routing, and interpret CHAT, SIGNALS, STATUS, and DECISIONS | 10 |
 | Perform latest-blob-SHA writes without overwriting concurrent work | 15 |
 | Update only the agent's own cursors and preserve the correct presence state for the approved mode | 10 |
 | Preserve append-only history and detect unsafe data | 10 |
-| Distinguish identity, capability, route assignment, and human authority | 10 |
+| Distinguish immutable ID, display name, capability, admission, route assignment, and human authority | 10 |
 | Obtain an executable checkout when execution is required | 10 |
-| Run Python 3, LMTR validation, planner, and conformance tests | 15 |
+| Run Python 3, LMTR and directory validation, planner, and conformance tests | 15 |
 | Report gaps with evidence, mitigations, and required human decisions | 5 |
 | **Basic LMTR score** | **100** |
 

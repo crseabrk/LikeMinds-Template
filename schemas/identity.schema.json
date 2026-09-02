@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LikeMinds sharded identity record",
+  "type": "object",
+  "required": [
+    "version",
+    "agent_id",
+    "display_name",
+    "previous_display_names",
+    "membership_state",
+    "capabilities",
+    "requested_routes",
+    "approved_routes",
+    "authority_boundary",
+    "record_version",
+    "proposed_at",
+    "activated_at",
+    "updated_at"
+  ],
+  "properties": {
+    "version": {"const": 1},
+    "agent_id": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 64,
+      "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+    },
+    "display_name": {"type": "string", "minLength": 2, "maxLength": 64, "pattern": "^[^\\r\\n]+$"},
+    "previous_display_names": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 2, "maxLength": 64, "pattern": "^[^\\r\\n]+$"},
+      "uniqueItems": true
+    },
+    "membership_state": {
+      "enum": ["PROPOSED", "ACKNOWLEDGING", "ACTIVE", "PAUSED", "RETIRED", "BLOCKED"]
+    },
+    "capabilities": {
+      "type": "object",
+      "required": [
+        "repository_read",
+        "repository_write",
+        "latest_sha_updates",
+        "local_checkout",
+        "terminal_execution",
+        "python_3",
+        "recurring_polling",
+        "persistent_task_context",
+        "external_notification",
+        "operating_environment",
+        "tool_limits"
+      ],
+      "properties": {
+        "repository_read": {"type": "boolean"},
+        "repository_write": {"type": "boolean"},
+        "latest_sha_updates": {"type": "boolean"},
+        "local_checkout": {"type": "boolean"},
+        "terminal_execution": {"type": "boolean"},
+        "python_3": {"type": "boolean"},
+        "recurring_polling": {"type": "boolean"},
+        "persistent_task_context": {"type": "boolean"},
+        "external_notification": {"type": "boolean"},
+        "operating_environment": {"type": "string", "minLength": 1, "maxLength": 200},
+        "tool_limits": {"type": "string", "minLength": 1, "maxLength": 500}
+      },
+      "additionalProperties": false
+    },
+    "requested_routes": {
+      "type": "array",
+      "items": {"type": "string", "maxLength": 128, "pattern": "^[a-z0-9][a-z0-9._/-]*$"},
+      "uniqueItems": true
+    },
+    "approved_routes": {
+      "type": "array",
+      "items": {"type": "string", "maxLength": 128, "pattern": "^[a-z0-9][a-z0-9._/-]*$"},
+      "uniqueItems": true
+    },
+    "authority_boundary": {"type": "string", "minLength": 1, "maxLength": 500},
+    "record_version": {"type": "integer", "minimum": 1},
+    "proposed_at": {"type": "string", "format": "date-time"},
+    "activated_at": {
+      "oneOf": [
+        {"type": "string", "format": "date-time"},
+        {"type": "null"}
+      ]
+    },
+    "updated_at": {"type": "string", "format": "date-time"}
+  },
+  "additionalProperties": false
+}

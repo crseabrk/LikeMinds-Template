@@ -1,10 +1,18 @@
 procedure JOIN
   complete orientation require
+  identity-directory snapshot require
   stable-role propose
   capabilities declare
-  ACTIVE participants acknowledge
+  requested-routes discover
+  admission-roles three-maximum require
+  admission-roles acknowledge
   own-role ACTIVE require
   own-cursors initialize
+end
+
+policy legacy-join
+  identity-directory absent legacy-quorum require
+  quorum-model mix deny
 end
 
 procedure INITIALIZE
