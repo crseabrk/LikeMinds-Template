@@ -135,7 +135,8 @@ def adopt(source: Path, manifest: dict, revision: str) -> None:
 
 
 def validate_installation() -> None:
-    commands = ([sys.executable, "tools/lmtr.py", "validate"], [sys.executable, "tests/test_lmtr.py"])
+    commands = ([sys.executable, "tools/lmtr.py", "validate"], [sys.executable, "tests/test_lmtr.py"],
+                [sys.executable, "tests/test_activity.py"], [sys.executable, "tools/validate.py"])
     for command in commands:
         result = subprocess.run(command, cwd=ROOT, text=True)
         if result.returncode:
