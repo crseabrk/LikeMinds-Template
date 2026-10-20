@@ -58,3 +58,9 @@ Future versions must document:
 - required human approvals.
 
 Updaters should propose reviewable pull requests and must never overwrite CHAT history, completed signals, installation policy, or private operational data without explicit human approval.
+
+## Inactivity update (0.1.6-alpha.1)
+
+Apply the managed update from a pinned template commit, then run `python3 tools/activity.py report` and review the effective states before `reconcile --expect INPUT_SHA256`. Legacy registries remain supported; installing this update does not perform sharded-identity migration. Code and docs from the newer identity framework may also be included in the update plan, but operational joining stays legacy until its separate cutover.
+
+`system/ACTIVITY.json` and `system/INACTIVITY.json` are protected operational files, never managed upstream. Reconciliation writes only the latter; original roles and project histories remain untouched. Rollback restores the backed-up managed framework and previous update-state record; retain activity events/snapshots as historical evidence. Older code does not enforce effective inactivity, so explicitly pause claims during rollback.
