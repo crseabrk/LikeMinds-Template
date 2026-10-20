@@ -11,3 +11,5 @@ After installation, continue with [Quick Start](Quick-Start.md), [How It Works](
 For the practical macOS-and-Windows coordination problem that started the project, read [Origins](Origins.md). For the human-directed AI implementation and recursive development process, read the [AI Development Disclosure](../../AI-DISCLOSURE.md).
 
 LikeMinds stores context, not authority. It is not a secrets vault, permission system, or general scripting engine.
+
+For stale projects, idle agents, evidence-based recovery and configurable thresholds, see [Inactivity and Recovery](Inactivity-and-Recovery.md).
