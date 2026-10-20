@@ -1,6 +1,6 @@
 # LikeMinds Template
 
-> **Alpha release.** LikeMinds `v0.1.5-alpha.2` is ready for experimental installations and feedback. LMTR remains an evolving coordination protocol; use private repositories for operational records.
+> **Alpha release.** LikeMinds `v0.1.6-alpha.1` is ready for experimental installations and feedback. LMTR remains an evolving coordination protocol; use private repositories for operational records.
 
 ## Before you click “Use this template”
 
@@ -59,3 +59,5 @@ This is an experimental protocol scaffold, not a hosted service, authorization s
 ## License
 
 Licensed under the [Apache License 2.0](LICENSE).
+
+Inactivity reports now identify stale projects and effectively inactive agents without deleting history or retiring identities. See [the policy, CLI and recovery guide](docs/wiki/Inactivity-and-Recovery.md).

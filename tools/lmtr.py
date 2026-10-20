@@ -292,7 +292,9 @@ def reconcile_presence(now: datetime | None = None) -> dict:
             interval = int(session["interval_seconds"])
             if seen.tzinfo is None or interval < 30:
                 raise ValueError
-            age = max(0.0, (now - seen.astimezone(timezone.utc)).total_seconds())
+            age = (now - seen.astimezone(timezone.utc)).total_seconds()
+            if age < 0:
+                raise ValueError("future presence timestamp")
             if session.get("exit_state") == "CLOSED":
                 status = "STALE"
             elif age <= interval * 2:
@@ -314,38 +316,61 @@ def reconcile_presence(now: datetime | None = None) -> dict:
     return {"collaboration_state": state, "sessions": effective, "source": str(path.relative_to(ROOT))}
 
 
-def detect_state() -> str:
-    installation = ROOT / "installation.yml"
-    routing = ROOT / "ROUTING.md"
-    system_agents = ROOT / "system" / "AGENTS.md"
-    operational = [installation.exists(), routing.exists(), system_agents.exists()]
+def activity_report(now=None):
+    # Load next to this module; callers may import lmtr by file path from tests.
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("likeminds_activity", Path(__file__).with_name("activity.py"))
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    try:
+        return module.evaluate(ROOT, now)
+    except (module.ActivityError, OSError) as exc:
+        raise LMTRFailure(f"LMTR-E040 inactivity evidence invalid: {exc}") from exc
+
+
+def effective_presence(activity):
+    presence = reconcile_presence(datetime.fromisoformat(activity["evaluated_at"]))
+    if presence["collaboration_state"] == "RECOVER":
+        return presence
+    live = 0
+    unknown = False
+    sessions = {}
+    for agent, session in presence["sessions"].items():
+        state = activity["agents"].get(agent, {}).get("effective_state", "UNKNOWN")
+        sessions[agent] = dict(session, activity_state=state)
+        if session["status"] in {"PRESENT", "SUSPECT"}:
+            if state == "UNKNOWN":
+                unknown = True
+            elif state == "ACTIVE":
+                live += 1
+    state = "RECOVER" if unknown else "NOBODY" if not live else "SOLO" if live == 1 else "TEAM"
+    return dict(presence, collaboration_state=state, sessions=sessions)
+
+
+def detect_state(activity=None) -> str:
+    operational = [(ROOT / name).exists() for name in ("installation.yml", "ROUTING.md", "system/AGENTS.md")]
     if not any(operational):
         return "INITIALIZE"
     if not all(operational):
         return "RECOVER"
-    agents = system_agents.read_text(encoding="utf-8")
-    legacy_records = re.sub(r"```.*?```", "", agents, flags=re.DOTALL)
-    presence = reconcile_presence()
-    if presence["collaboration_state"] in {"SOLO", "TEAM"}:
-        return presence["collaboration_state"]
-    if presence["collaboration_state"] == "RECOVER":
+    load_identity_directory()  # Validate directory before trusting derived eligibility.
+    activity = activity or activity_report()
+    states = [item["effective_state"] for item in activity["agents"].values()]
+    if "UNKNOWN" in states:
         return "RECOVER"
-    directory = load_identity_directory()
-    directory_states = directory["states"]
-    if directory_states.get("ACTIVE", 0):
+    presence = effective_presence(activity)
+    if presence["collaboration_state"] in {"SOLO", "TEAM", "RECOVER"}:
+        return presence["collaboration_state"]
+    if "ACTIVE" in states:
         return "RESUME"
-    if directory_states.get("PROPOSED", 0) or directory_states.get("ACKNOWLEDGING", 0):
-        return "JOIN"
-    if "State: ACTIVE" in legacy_records or "| ACTIVE |" in legacy_records:
-        return "RESUME"
-    if "State: PROPOSED" in legacy_records or "State: ACKNOWLEDGING" in legacy_records:
+    if "PROPOSED" in states or "ACKNOWLEDGING" in states:
         return "JOIN"
     return "RECOVER"
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Validate LMTR or print the bootstrap plan")
-    parser.add_argument("command", choices=("validate", "plan", "presence", "directory"), nargs="?", default="validate")
+    parser.add_argument("command", choices=("validate", "plan", "presence", "directory", "activity"), nargs="?", default="validate")
     args = parser.parse_args()
     try:
         statements = validate()
@@ -353,12 +378,15 @@ def main() -> int:
             print(json.dumps({
                 "lmtr": "0.1.0",
                 "state": detect_state(),
-                "presence": reconcile_presence(),
+                "presence": effective_presence(activity_report()),
+                "activity": activity_report(),
                 "directory": load_identity_directory(),
                 "statements": len(statements),
             }, indent=2))
         elif args.command == "presence":
             print(json.dumps(reconcile_presence(), indent=2))
+        elif args.command == "activity":
+            print(json.dumps(activity_report(), indent=2))
         elif args.command == "directory":
             print(json.dumps(load_identity_directory(), indent=2))
         else:

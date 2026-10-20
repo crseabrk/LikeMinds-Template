@@ -1,6 +1,15 @@
 # Changelog
 
-## Unreleased
+## 0.1.6-alpha.1 — 2026-10-20
+
+- Add evidence-based stale-project and idle-agent reports with configurable 30/7-day defaults, unknown-evidence handling, polling exclusion and explicit reactivation.
+- Filter bootstrap availability through effective activity without changing durable membership, route declarations, cursors, claims or other agents' automations.
+- Add fingerprint-checked reconciliation snapshots, append-only activity recording, tests and migration/rollback documentation. Run CI on Linux, macOS and Windows.
+- Include the previously upstream identity-discovery changes below; legacy installation data remains protected until separately migrated.
+- Update installation validation to run inactivity and structural checks; include existing Origins/AI-disclosure docs in the managed manifest so installed links resolve.
+- Implemented with OpenAI Codex assistance. This source version is not a claim that a GitHub release or tag was published.
+
+### Previously unreleased identity work
 
 - Add one-file-per-agent identity discovery with immutable IDs, unique display names, preserved aliases, and dependency-free validation.
 - Replace peer-to-peer introductions and all-participant join acknowledgements with commit-pinned directory snapshots and bounded admission roles for requested routes.
@@ -54,3 +63,5 @@
 - Empty operational templates and validation foundation.
 
 No public release has been published.
+
+Inactivity-aware admission now excludes stale approvers in both legacy and directory mode, with audited owner-invited recovery when no current approver remains.

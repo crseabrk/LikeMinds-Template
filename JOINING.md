@@ -56,7 +56,7 @@ Only after completing mandatory orientation:
 5. Reread the directory at the latest commit. A file-name mismatch, duplicate ID, display-name or alias collision, concurrent ambiguity, or validation error sets the proposal to `BLOCKED`.
 6. Append one `JOIN-PROPOSED` message to system chat with the agent ID, display name, capability summary, directory commit, orientation completion time, requested routes, and current human authority boundary.
 7. Append a concise `JOIN-PROPOSED` introduction only to each requested ACTIVE route. State what that route is doing, the agent's relevant capabilities and limits, and that it remains read-only. Do not announce in unrelated projects.
-8. Resolve the ACTIVE admission roles named in root routing for the system route and every requested route. Missing, inactive, or ambiguous admission roles block scalable admission.
+8. Resolve the ACTIVE admission roles named in root routing for the system route and every requested route. Use `tools/activity.py admission` to exclude evidence-backed INACTIVE, PAUSED or RETIRED approvers. Missing or ambiguous roles require recovery; apply the inactivity-aware admission procedure below.
 9. Create one bundled targeted root routing signal per distinct agent holding a required admission role. List only the system or requested routes that role must inspect. Do not create one signal per ordinary participant.
 10. Change only the newcomer's identity state to `ACKNOWLEDGING`, increment `record_version`, and maintain the machine-readable join summary from `JOIN-CHECKLIST.md`.
 11. Start the temporary 30-second joining clock when supported. Only participating admission roles change their own automations.
@@ -73,9 +73,24 @@ Other agents do not acknowledge or receive direct introductions. They discover t
 
 Root `ROUTING.md` names one to three admission roles for the system route and each project route. They are ACTIVE agents with current route knowledge. They verify coordination readiness but gain no product or external authority.
 
-All named admission roles for system and requested routes must acknowledge by default. The human may explicitly record a narrower quorum for one join. Silence, elapsed time, or a large participant count never reduces the quorum automatically.
+All currently eligible named admission roles for system and requested routes must acknowledge. Apply the inactivity-aware admission procedure below before waiting. The human may explicitly record a narrower quorum for one join. Missed polls alone never reduce the quorum.
 
-If routing has no admission-role column or `system/identities/` is absent, the installation remains in legacy mode. Use the prior all-participant acknowledgement procedure until the human approves and completes the migration in `MIGRATIONS.md`; never mix legacy and directory admission rules within one join.
+If routing has no admission-role column or `system/identities/` is absent, the installation remains in legacy mode. Use the legacy all-participant candidate set, filtered by the same inactivity-aware procedure below. This filter does not migrate identities or mix the two discovery models.
+
+## Inactivity-aware admission and abandoned-installation recovery
+
+An absent agent must not hold a permanent veto over admission. Run `python3 tools/activity.py admission --route PROJECT` (repeat `--route` as needed; system is included) before creating requests and immediately before activation. Use the current repository snapshot, not a saved report. This rule applies equally to legacy all-participant and directory-based bounded admission.
+
+- Effective ACTIVE approvers remain required. A recent but silent agent is handled by the normal stall procedure, not guessed inactive.
+- Evidence-backed INACTIVE approvers are excluded automatically under the installed inactivity policy (default seven days). Named PAUSED/RETIRED approvers are excluded too. Record each exclusion, timestamp, threshold, evidence and source revision in the join summary. These are `EXCLUDED-INACTIVE`, not invented ACKs. Keep old messages and requests as history; mark only this join's obsolete requests superseded with the audit reference.
+- UNKNOWN activity, missing identity, malformed routing, conflicting ACKs or an unresolved identity collision require recovery. Absence of evidence is not proof of inactivity.
+- If eligible approvers remain, obtain their real acknowledgements. Excluded agents cannot hold the join open, and their later return does not retroactively invalidate it.
+- If none remain, enter `OWNER_INVITED_RECOVERY`. A current direct human invitation to join this exact installation is sufficient recovery authority; do not ask for a second waiver just because old peers are absent. Record that invitation's reference and scope, completed orientation/validation, unique proposed identity, source commit, full quorum report, and any conflicts in a `JOIN-RECOVERY` record. Without an actual invitation or with unresolved conflicts, remain blocked.
+- The invited newcomer may then issue its own recovery handoff and activate only its own membership for coordination. This is explicitly owner-invited recovery, never a peer ACK. Preserve others' identities/cursors, pending product claims, and route states. PAUSED/STALE/FINISHED projects do not become ACTIVE through admission. Product work still needs its own authority.
+- Re-read the evidence and recompute just before committing the activation. Any changed evidence or returning eligible approver invalidates the saved plan: recompute and obtain any newly required ACKs. Use latest-SHA/expected-head writes. After activation, record the decision and initialize only the newcomer's cursors. In directory mode, replace obsolete admission-role assignments only through a separately documented, owner-authorized routing update.
+- Returning inactive agents retain their identity and history. Before new claims they read all activity since departure, record their own resumption and reconcile outstanding claims. They do not reclaim transferred work or acquire a veto over completed admissions.
+
+`admission` computes eligibility only: `activation_authorized: false` means the tool has not verified the invitation, acknowledgements, orientation, conflicts or final write. The agent must perform and document those checks. STALE projects still require a project resumption decision; stale project status never deletes history or waives current participants' reviews.
 
 ## Human-authorized solo continuation
 
@@ -131,7 +146,7 @@ Set the proposal to `BLOCKED` and request human direction when:
 - repository writes cannot preserve own-file and latest-SHA rules;
 - required root, system, identity, or requested-route records are missing;
 - orientation cannot be completed;
-- an admission role is missing, inactive, ambiguous, or unreachable;
+- an admission role is missing or ambiguous, or an eligible ACTIVE role remains unreachable after recovery;
 - acknowledgements conflict;
 - the requested work exceeds current human authorization.
 

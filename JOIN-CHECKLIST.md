@@ -22,7 +22,7 @@ If any connection method is missing or unverified, record it before beginning th
 
 1. Orient: validate one exact identity directory snapshot; read the required root, system, extension, and requested ACTIVE-route records; then recheck routing.
 2. Propose: create one self-owned identity record, append one system `JOIN-PROPOSED`, and announce only in requested routes.
-3. Acknowledge: move to `ACKNOWLEDGING` and collect responses from the bounded admission roles named for system and requested routes.
+3. Calculate the current inactivity-aware quorum with `tools/activity.py admission`; retain the report, source commit, exclusions and invitation reference. Follow `JOINING.md` owner-invited recovery if no eligible approvers remain. Otherwise acknowledge: move to `ACKNOWLEDGING` and collect responses from the bounded admission roles named for system and requested routes.
 4. Activate: after the recorded quorum, issue the activation handoff.
 5. Self-activate: the newcomer changes only its own state to `ACTIVE`.
 6. Initialize: the newcomer sets only its own cursors at the final acknowledgement points.
@@ -67,3 +67,5 @@ Never duplicate a recovery question every cycle. Record one question, continue o
 ## Scale check
 
 One hundred agents create one hundred independent identity files and bounded admission traffic, not 9,900 peer-to-peer introductions. Every agent that needs the full roster still has to receive that information, but it obtains one commit-pinned snapshot and then reads only changed records.
+
+A join summary also records the activity input hash, evaluation time, policy thresholds, excluded approvers with evidence, current required ACK set, and recovery authority if used. Recompute immediately before activation; a saved report is not a permanent quorum waiver.

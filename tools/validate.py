@@ -7,6 +7,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 REQUIRED = [
+    "tools/activity.py", "tests/test_activity.py", "docs/wiki/Inactivity-and-Recovery.md",
     "README.md", "LICENSE", "BOOTSTRAP.md", "ONBOARDING.md", "START-HERE.md", "AGENTS.md", "PROTOCOL.md", "JOINING.md", "JOIN-CHECKLIST.md",
     "SECURITY.md", "VERSION", "installation.example.yml", "templates/ROUTING.md",
     "templates/system/STATUS.md", "templates/system/DECISIONS.md",

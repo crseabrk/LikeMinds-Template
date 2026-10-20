@@ -74,3 +74,7 @@ An installation without `system/identities/` or route admission roles remains on
 ## Extensions
 
 Load order: core → official extensions → installation policy → project extensions → current human authorization. Later layers may narrow but never expand authority beyond the current human request.
+
+## Inactivity and stale projects
+
+Durable membership and short session presence are separate from effective activity. Read `docs/wiki/Inactivity-and-Recovery.md`. Before a new claim require both effective agent and project ACTIVE states. Seven idle days defaults to agent INACTIVE, thirty to project STALE; configurable explicit activity policy controls these thresholds. UNKNOWN evidence blocks claims. Report/reconcile never mutate identity ownership, membership, route declarations, cursors, existing claims or another heartbeat. Human-directed resumption records fresh activity and rechecks eligibility; it never bypasses admission.
