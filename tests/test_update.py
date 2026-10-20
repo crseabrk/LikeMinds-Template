@@ -67,6 +67,20 @@ def main() -> None:
         passed = subprocess.run([sys.executable, "tools/validate.py"], cwd=destination)
         assert passed.returncode == 0
 
+        # New validation failures must restore managed content and leave operational history intact.
+        version_before = (destination / "VERSION").read_bytes()
+        state_before = state_path.read_bytes()
+        history_before = history.read_bytes()
+        source_test = source / "tests/test_activity.py"
+        test_before = source_test.read_bytes()
+        source_test.write_text("raise SystemExit(1)\n", encoding="utf-8")
+        (source / "VERSION").write_text("must-roll-back\n", encoding="utf-8")
+        run(destination, "apply", "--source", str(source), "--source-revision", "bad-tests", expected=1)
+        assert (destination / "VERSION").read_bytes() == version_before
+        assert state_path.read_bytes() == state_before
+        assert history.read_bytes() == history_before
+        source_test.write_bytes(test_before)
+
         (destination / "AGENTS.md").write_text(
             (destination / "AGENTS.md").read_text(encoding="utf-8") + "\nlocal change\n",
             encoding="utf-8",
