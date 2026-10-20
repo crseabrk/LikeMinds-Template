@@ -101,3 +101,7 @@ Connector-only initialization may establish coordination records. It may not cla
 - Never copy private operational history into a public template.
 - Never store credentials, tokens, signed URLs, personal data, or unnecessary machine details.
 - LikeMinds stores context, not authority.
+
+## Inactivity check
+
+The planner now computes effective activity as well as membership and presence. Read [Inactivity and Recovery](docs/wiki/Inactivity-and-Recovery.md). An old ACTIVE registry entry can be effectively INACTIVE; only stale agents leads to RECOVER. `python3 tools/activity.py report` is read-only. An authorized `reconcile --expect INPUT_SHA256` saves evidence without retiring roles or changing routes. Missing/future/malformed activity does not justify guessing availability. No heartbeat is enabled by this feature.
