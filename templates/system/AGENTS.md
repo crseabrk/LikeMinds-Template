@@ -36,3 +36,7 @@ Activated-At: —
 Capabilities are verified facts, not permissions. Projects may declare additional requirements, while the human authority boundary separately controls whether an available capability may be used. When a requirement is missing, record a capability-gap report with evidence and mitigation alternatives; do not silently substitute weaker verification.
 
 Do not store credentials, machine identifiers, personal information, or secrets. Do not overwrite another role or identity file. Follow JOINING.md for PROPOSED → ACKNOWLEDGING → ACTIVE transitions.
+
+## Effective inactivity
+
+Registry membership does not establish current availability. Read `docs/wiki/Inactivity-and-Recovery.md` and run the activity report before claims. INACTIVE is derived and reversible; it does not retire or transfer an identity.
