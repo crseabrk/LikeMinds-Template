@@ -31,4 +31,8 @@ policy lifecycle
   other-heartbeat mutation deny
   expired-lease role-retire deny
   reentry lease-renew require
+  activity-report before-claim require
+  effective-agent ACTIVE require
+  effective-project ACTIVE require
+  inactivity identity-mutation deny
 end
