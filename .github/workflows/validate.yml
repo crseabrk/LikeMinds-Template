@@ -9,8 +9,12 @@ permissions:
   contents: read
 
 jobs:
-  validate:
-    runs-on: ubuntu-latest
+  platform-tests:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -20,7 +24,19 @@ jobs:
         run: python tools/validate.py
       - name: Validate LMTR conformance
         run: python tests/test_lmtr.py
+      - name: Validate inactivity and recovery
+        run: python tests/test_activity.py
       - name: Validate managed updater
         run: python tests/test_update.py
       - name: Validate clean installation
         run: python tests/test_clean_install.py
+
+  validate:
+    if: always()
+    needs: platform-tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require all platform tests
+        env:
+          RESULT: ${{ needs.platform-tests.result }}
+        run: test "$RESULT" = success
