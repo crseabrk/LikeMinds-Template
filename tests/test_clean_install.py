@@ -2,6 +2,7 @@
 """Clean-room smoke test for documented manual installation."""
 
 from pathlib import Path
+from datetime import datetime, timezone
 import json
 import shutil
 import subprocess
@@ -69,7 +70,7 @@ def main() -> None:
             "record_version": 2,
             "proposed_at": "2026-01-01T00:00:00Z",
             "activated_at": "2026-01-01T00:00:01Z",
-            "updated_at": "2026-01-01T00:00:01Z",
+            "updated_at": datetime.now(timezone.utc).isoformat(),
         }
         identity_path = installation / "system" / "identities" / "agt-clean-room-001.json"
         identity_path.write_text(json.dumps(identity, indent=2) + "\n", encoding="utf-8")
